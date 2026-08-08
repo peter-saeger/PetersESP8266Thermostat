@@ -1,6 +1,7 @@
 let ws = null;
 let chart = null;
 let pollTimer = null;
+let isPowerOn = true;
 let isFreezeMode = false;
 let savedNormalLow = 50;
 let savedNormalHigh = 65;
@@ -13,14 +14,56 @@ document.addEventListener("DOMContentLoaded", () => {
   initDial();
 });
 
+function onPowerToggleChange(checked) {
+  isPowerOn = checked;
+  const labelOff = document.getElementById("labelPowerOff");
+  const labelOn = document.getElementById("labelPowerOn");
+  const modeText = document.getElementById("modeStatusText");
+
+  if (checked) {
+    if (labelOff) labelOff.classList.remove("active");
+    if (labelOn) labelOn.classList.add("active");
+    if (modeText) modeText.textContent = isFreezeMode ? "FREEZE PROTECT (40-45°F)" : "SYSTEM ACTIVE";
+  } else {
+    if (labelOff) labelOff.classList.add("active");
+    if (labelOn) labelOn.classList.remove("active");
+    
+    if (isFreezeMode) {
+      isFreezeMode = false;
+      const freezeToggle = document.getElementById("freezeToggle");
+      if (freezeToggle) freezeToggle.checked = false;
+      const labelNorm = document.getElementById("labelNormal");
+      const labelFreeze = document.getElementById("labelFreeze");
+      if (labelNorm) labelNorm.classList.add("active");
+      if (labelFreeze) labelFreeze.classList.remove("active");
+    }
+    
+    if (modeText) modeText.textContent = "HEATER POWER OFF";
+  }
+
+  saveBounds();
+}
+
 function onFreezeToggleChange(checked) {
   const lowInput = document.getElementById("lowTempInput");
   const highInput = document.getElementById("highTempInput");
   const modeText = document.getElementById("modeStatusText");
-  const labelOn = document.getElementById("labelOn");
+  const labelNorm = document.getElementById("labelNormal");
   const labelFreeze = document.getElementById("labelFreeze");
+  const powerToggle = document.getElementById("powerToggle");
 
   if (checked) {
+    // 1. If Freeze Protect is turned ON, force POWER switch to ON!
+    if (!isPowerOn) {
+      isPowerOn = true;
+      if (powerToggle) powerToggle.checked = true;
+      const labelPowerOff = document.getElementById("labelPowerOff");
+      const labelPowerOn = document.getElementById("labelPowerOn");
+      if (labelPowerOff) labelPowerOff.classList.remove("active");
+      if (labelPowerOn) labelPowerOn.classList.add("active");
+    }
+
+    // 2. Stash custom normal range & set to 40°F / 45°F
     if (!isFreezeMode) {
       savedNormalLow = parseFloat(lowInput.value) || 50;
       savedNormalHigh = parseFloat(highInput.value) || 65;
@@ -29,16 +72,17 @@ function onFreezeToggleChange(checked) {
     lowInput.value = 40;
     highInput.value = 45;
 
-    if (modeText) modeText.textContent = "FREEZE PROTECT ACTIVE (40-45°F)";
-    if (labelOn) labelOn.classList.remove("active");
+    if (modeText) modeText.textContent = "FREEZE PROTECT (40-45°F)";
+    if (labelNorm) labelNorm.classList.remove("active");
     if (labelFreeze) labelFreeze.classList.add("active");
   } else {
+    // Return to Normal mode
     isFreezeMode = false;
     lowInput.value = savedNormalLow;
     highInput.value = savedNormalHigh;
 
-    if (modeText) modeText.textContent = "NORMAL OPERATION";
-    if (labelOn) labelOn.classList.add("active");
+    if (modeText) modeText.textContent = isPowerOn ? "SYSTEM ACTIVE" : "HEATER POWER OFF";
+    if (labelNorm) labelNorm.classList.add("active");
     if (labelFreeze) labelFreeze.classList.remove("active");
   }
 

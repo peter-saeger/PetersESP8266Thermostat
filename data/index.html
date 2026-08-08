@@ -33,7 +33,7 @@
 
       <div class="cluster-grid">
         
-        <!-- Left Panel: Status Lamp & 1950s Freeze Protect Toggle -->
+        <!-- Left Panel: Status Lamp & Dual 1950s Vintage Bat-Handle Toggle Switches -->
         <div class="cluster-col col-left">
           
           <!-- Vintage Status Indicator Lamp -->
@@ -46,25 +46,44 @@
             </div>
           </div>
 
-          <!-- 1950s Toggle Switch Box: ON / FREEZE PROTECT -->
+          <!-- Dual 1950s Vintage Mechanical Bat-Handle Toggle Switches -->
           <div class="toggle-card">
-            <div class="toggle-card-header">MODE SELECT</div>
+            <div class="toggle-card-header">CONSOLE CONTROL</div>
             
-            <div class="vintage-switch-container">
-              <span class="switch-label label-on" id="labelOn">ON</span>
-              <label class="toggle-switch-collar" for="freezeToggle">
-                <input type="checkbox" id="freezeToggle" onchange="onFreezeToggleChange(this.checked)">
-                <span class="toggle-lever"></span>
-              </label>
-              <span class="switch-label label-freeze" id="labelFreeze">FREEZE<br>PROTECT</span>
+            <!-- Switch 1: POWER (ON / OFF) -->
+            <div class="switch-row">
+              <span class="row-title">POWER</span>
+              <div class="bat-switch-unit">
+                <span class="bat-label label-off" id="labelPowerOff">OFF</span>
+                <label class="bat-switch-collar" for="powerToggle" title="Master Power Switch">
+                  <input type="checkbox" id="powerToggle" checked onchange="onPowerToggleChange(this.checked)">
+                  <div class="hex-nut"></div>
+                  <div class="bat-lever"></div>
+                </label>
+                <span class="bat-label label-on active" id="labelPowerOn">ON</span>
+              </div>
             </div>
 
-            <div class="mode-status-text" id="modeStatusText">NORMAL OPERATION</div>
+            <!-- Switch 2: MODE (NORMAL / FREEZE PROTECT) -->
+            <div class="switch-row">
+              <span class="row-title">MODE</span>
+              <div class="bat-switch-unit">
+                <span class="bat-label label-norm active" id="labelNormal">NORM</span>
+                <label class="bat-switch-collar" for="freezeToggle" title="Freeze Protection Mode Switch">
+                  <input type="checkbox" id="freezeToggle" onchange="onFreezeToggleChange(this.checked)">
+                  <div class="hex-nut"></div>
+                  <div class="bat-lever"></div>
+                </label>
+                <span class="bat-label label-freeze" id="labelFreeze">FREEZE</span>
+              </div>
+            </div>
+
+            <div class="mode-status-text" id="modeStatusText">SYSTEM ACTIVE</div>
           </div>
 
         </div>
 
-        <!-- Center Main 1950s Instrument Gauge Cluster (30% Bigger: 350px x 350px) -->
+        <!-- Center Main 1950s Instrument Gauge Cluster (350px x 350px) -->
         <div class="cluster-col col-center">
           <div class="main-gauge-bezel">
             <div class="gauge-dial-face">
