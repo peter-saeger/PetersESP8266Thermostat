@@ -196,12 +196,14 @@ function initDial() {
       const high = parseFloat(document.getElementById('highTempInput').value) || 65;
       if (val >= high) val = high - 1;
       document.getElementById('lowTempInput').value = val.toFixed(0);
-      document.getElementById('dispLowTemp').textContent = `${val.toFixed(0)}°F`;
+      const dispLow = document.getElementById('dispLowTemp');
+      if (dispLow) dispLow.textContent = `${val.toFixed(0)}°F`;
     } else {
       const low = parseFloat(document.getElementById('lowTempInput').value) || 50;
       if (val <= low) val = low + 1;
       document.getElementById('highTempInput').value = val.toFixed(0);
-      document.getElementById('dispHighTemp').textContent = `${val.toFixed(0)}°F`;
+      const dispHigh = document.getElementById('dispHighTemp');
+      if (dispHigh) dispHigh.textContent = `${val.toFixed(0)}°F`;
     }
     updateHandles();
   }
@@ -332,17 +334,21 @@ function updateUI(data) {
 
   if (data.lowTemp !== undefined) {
     const lowVal = parseFloat(data.lowTemp).toFixed(0);
-    document.getElementById("dispLowTemp").textContent = `${lowVal}°F`;
-    if (document.activeElement !== document.getElementById("lowTempInput")) {
-      document.getElementById("lowTempInput").value = lowVal;
+    const dispLow = document.getElementById("dispLowTemp");
+    if (dispLow) dispLow.textContent = `${lowVal}°F`;
+    const lowInput = document.getElementById("lowTempInput");
+    if (lowInput && document.activeElement !== lowInput) {
+      lowInput.value = lowVal;
     }
   }
 
   if (data.highTemp !== undefined) {
     const highVal = parseFloat(data.highTemp).toFixed(0);
-    document.getElementById("dispHighTemp").textContent = `${highVal}°F`;
-    if (document.activeElement !== document.getElementById("highTempInput")) {
-      document.getElementById("highTempInput").value = highVal;
+    const dispHigh = document.getElementById("dispHighTemp");
+    if (dispHigh) dispHigh.textContent = `${highVal}°F`;
+    const highInput = document.getElementById("highTempInput");
+    if (highInput && document.activeElement !== highInput) {
+      highInput.value = highVal;
     }
   }
 
@@ -365,9 +371,13 @@ function updateUI(data) {
     }
   }
 
-  if (data.ip) document.getElementById("sysIp").textContent = data.ip;
+  if (data.ip) {
+    const sysIp = document.getElementById("sysIp");
+    if (sysIp) sysIp.textContent = data.ip;
+  }
   if (data.rssi !== undefined) {
-    document.getElementById("sysRssi").textContent = data.rssi;
+    const sysRssi = document.getElementById("sysRssi");
+    if (sysRssi) sysRssi.textContent = data.rssi;
     const dispRssiVal = document.getElementById("dispRssiVal");
     if (dispRssiVal) dispRssiVal.textContent = `${data.rssi} dBm`;
 
@@ -384,7 +394,8 @@ function updateUI(data) {
     const secs = parseInt(data.uptime, 10);
     const hrs = Math.floor(secs / 3600);
     const mins = Math.floor((secs % 3600) / 60);
-    document.getElementById("sysUptime").textContent = `${hrs}h ${mins}m`;
+    const sysUptime = document.getElementById("sysUptime");
+    if (sysUptime) sysUptime.textContent = `${hrs}h ${mins}m`;
   }
 }
 
