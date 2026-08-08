@@ -163,12 +163,21 @@ function initDial() {
   }
   
   function endDrag() {
-    if (activeHandle) activeHandle = null;
+    if (activeHandle) {
+      activeHandle = null;
+      debouncedSaveBounds(400);
+    }
   }
   
-  // Also update handles when inputs change manually
-  document.getElementById('lowTempInput').addEventListener('input', updateHandles);
-  document.getElementById('highTempInput').addEventListener('input', updateHandles);
+  // Also update handles and trigger debounced auto-save when inputs change manually
+  document.getElementById('lowTempInput').addEventListener('input', () => {
+    updateHandles();
+    debouncedSaveBounds(800);
+  });
+  document.getElementById('highTempInput').addEventListener('input', () => {
+    updateHandles();
+    debouncedSaveBounds(800);
+  });
   updateHandles();
 }
 
@@ -197,6 +206,7 @@ function stepBound(inputId, step) {
   if (val >= min && val <= max) {
     input.value = val.toFixed(0);
     updateHandles();
+    debouncedSaveBounds(600);
   }
 }
 
@@ -334,7 +344,20 @@ function updateUI(data) {
   }
 }
 
+let saveTimer = null;
+
+function debouncedSaveBounds(delayMs = 600) {
+  if (saveTimer) clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    saveBounds();
+  }, delayMs);
+}
+
 async function saveBounds() {
+  if (saveTimer) {
+    clearTimeout(saveTimer);
+    saveTimer = null;
+  }
   const lowVal = parseFloat(document.getElementById("lowTempInput").value);
   const highVal = parseFloat(document.getElementById("highTempInput").value);
   const feedback = document.getElementById("formFeedback");
