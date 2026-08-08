@@ -151,12 +151,12 @@ body {
 .bolt-bl { bottom: 12px; left: 12px; }
 .bolt-br { bottom: 12px; right: 12px; }
 
-/* Cluster Grid Layout - Hugging Main Gauge Tightly */
+/* Cluster Grid Layout - Split the Difference Spacing */
 .cluster-grid {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 16px;
+  gap: 36px;
   width: 100%;
 }
 
