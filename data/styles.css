@@ -429,18 +429,31 @@ body {
 
 /* Footer */
 .footer {
-  padding: 10px 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 4px;
   border-top: 1px solid var(--card-border);
 }
 
 .sys-info {
   display: flex;
-  justify-content: space-between;
+  gap: 20px;
   font-size: 0.8rem;
   color: var(--text-muted);
 }
 
+.footer-actions {
+  display: flex;
+  align-items: center;
+}
+
 @media (max-width: 600px) {
+  .footer {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
   .sys-info {
     flex-direction: column;
     gap: 4px;

@@ -180,7 +180,7 @@ function initWebSocket() {
     console.log("[WS] Connected to ESP8266 WebSocket Server");
     if (badge) {
       badge.className = "badge badge-live";
-      badge.textContent = "Live WS";
+      badge.textContent = "Connected";
     }
     if (pollTimer) clearInterval(pollTimer);
   };
@@ -199,8 +199,8 @@ function initWebSocket() {
   ws.onclose = () => {
     console.warn("[WS] Disconnected. Falling back to HTTP polling...");
     if (badge) {
-      badge.className = "badge badge-offline";
-      badge.textContent = "HTTP Fallback";
+      badge.className = "badge badge-connecting";
+      badge.textContent = "Connecting...";
     }
     setTimeout(initWebSocket, 5000);
     if (!pollTimer) {
