@@ -1,0 +1,5 @@
+.pio/
+node_modules/
+.vscode/.pio/
+.vscode/.piobuild
+.DS_Store
