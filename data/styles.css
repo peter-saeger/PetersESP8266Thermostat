@@ -151,18 +151,19 @@ body {
 .bolt-bl { bottom: 12px; left: 12px; }
 .bolt-br { bottom: 12px; right: 12px; }
 
-/* Cluster Grid Layout - Tight Tighter Side Spacing */
+/* Cluster Grid Layout - Hugging Main Gauge Tightly */
 .cluster-grid {
-  display: grid;
-  grid-template-columns: 190px 1fr 220px;
-  gap: 14px;
+  display: flex;
+  justify-content: center;
   align-items: center;
+  gap: 16px;
+  width: 100%;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 820px) {
   .cluster-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
+    flex-direction: column;
+    gap: 24px;
   }
 }
 
@@ -171,6 +172,20 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.col-left {
+  width: 190px;
+  flex-shrink: 0;
+}
+
+.col-center {
+  flex-shrink: 0;
+}
+
+.col-right {
+  width: 220px;
+  flex-shrink: 0;
 }
 
 /* Left Panel Status Lamp & 1950s Toggle Switch */
