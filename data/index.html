@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Thermostat</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/>
+        </svg>
+        <h1>Shop Thermostat</h1>
+      </div>
+      <div class="status-badges">
+        <span id="connectionBadge" class="badge badge-connecting">Connecting...</span>
+        <a href="/update" class="badge badge-ota" title="Firmware Over-The-Air Update">OTA Update</a>
+      </div>
+    </header>
+
+    <!-- Main Grid -->
+    <main class="dashboard-grid">
+      <!-- Thermostat Hero Card -->
+      <section class="card hero-card" id="heroCard">
+        <div class="dial-container">
+          <svg class="dial-svg" viewBox="0 0 200 200" id="dialSvg">
+            <!-- Background track (Span: 135 deg to 405 deg) -->
+            <path d="M 36.36 163.64 A 90 90 0 1 1 163.64 163.64" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="10" stroke-linecap="round"/>
+            <!-- Active range track -->
+            <path id="activeTrack" d="M 36.36 163.64 A 90 90 0 0 1 163.64 163.64" fill="none" stroke="var(--accent-blue)" stroke-width="10" stroke-linecap="round"/>
+            
+            <!-- Handles -->
+            <circle id="lowHandle" class="drag-handle" cx="36.36" cy="163.64" r="10" fill="#fff" stroke="var(--accent-blue)" stroke-width="3"/>
+            <circle id="highHandle" class="drag-handle" cx="163.64" cy="163.64" r="10" fill="#fff" stroke="var(--accent-orange)" stroke-width="3"/>
+          </svg>
+          
+          <div class="dial-inner" id="dialInner">
+            <div class="temp-label">CURRENT TEMP</div>
+            <div class="temp-display">
+              <span id="currentTemp">--</span><span class="unit">&deg;F</span>
+            </div>
+            <div class="temp-status" id="heatStatus">STANDBY</div>
+          </div>
+        </div>
+        <div class="hero-footer">
+          <div class="bounds-summary">
+            <div class="bound-item">
+              <span class="bound-label">Target Low</span>
+              <span class="bound-val" id="dispLowTemp">--&deg;F</span>
+            </div>
+            <div class="bound-divider"></div>
+            <div class="bound-item">
+              <span class="bound-label">Target High</span>
+              <span class="bound-val" id="dispHighTemp">--&deg;F</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Controls Card -->
+      <section class="card controls-card">
+        <h2>Temperature Bounds</h2>
+        <p class="subtitle">Set automatic heater trigger bounds</p>
+
+        <form id="boundsForm" onsubmit="event.preventDefault(); saveBounds();">
+          <!-- Low Temp Control -->
+          <div class="control-group">
+            <label for="lowTempInput">Low Bound (Heater Turns ON)</label>
+            <div class="stepper">
+              <button type="button" class="step-btn" onclick="stepBound('lowTempInput', -1)">&minus;</button>
+              <input type="number" id="lowTempInput" name="lowTemp" min="40" max="80" step="1" value="50" required>
+              <button type="button" class="step-btn" onclick="stepBound('lowTempInput', 1)">&plus;</button>
+              <span class="input-unit">&deg;F</span>
+            </div>
+          </div>
+
+          <!-- High Temp Control -->
+          <div class="control-group">
+            <label for="highTempInput">High Bound (Heater Turns OFF)</label>
+            <div class="stepper">
+              <button type="button" class="step-btn" onclick="stepBound('highTempInput', -1)">&minus;</button>
+              <input type="number" id="highTempInput" name="highTemp" min="45" max="85" step="1" value="65" required>
+              <button type="button" class="step-btn" onclick="stepBound('highTempInput', 1)">&plus;</button>
+              <span class="input-unit">&deg;F</span>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn" id="saveBtn">Apply Bounds</button>
+          <div id="formFeedback" class="form-feedback"></div>
+        </form>
+      </section>
+
+      <!-- History Chart Card -->
+      <section class="card chart-card">
+        <div class="chart-header">
+          <h2>Temperature History</h2>
+          <button class="icon-btn" onclick="fetchHistory()" title="Refresh Chart">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M23 4v6h-6M1 20v-6h6"/>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+            </svg>
+          </button>
+        </div>
+        <div class="chart-wrapper">
+          <canvas id="tempChart"></canvas>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="sys-info">
+        <span>IP: <strong id="sysIp">--</strong></span>
+        <span>WiFi Signal: <strong id="sysRssi">--</strong> dBm</span>
+        <span>Uptime: <strong id="sysUptime">--</strong></span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

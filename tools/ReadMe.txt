@@ -1,1 +1,0 @@
-Copy this to c:\program files (x86)\Arduino\tools
