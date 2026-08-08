@@ -535,22 +535,40 @@ body {
   text-shadow: 0 0 16px var(--ac-amber-glow);
 }
 
+/* Bottom Humidity Nixie Readout Box */
+.bottom-humidity-box {
+  position: absolute;
+  bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.humidity-label {
+  font-size: 0.52rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  color: var(--ac-orange);
+  margin-bottom: 2px;
+}
+
 .digital-nixie-subwindow {
   background: #06080d;
-  border: 1px solid rgba(245, 83, 0, 0.4);
+  border: 1.5px solid rgba(245, 83, 0, 0.5);
   border-radius: 6px;
-  padding: 2px 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.9), inset 0 1px 4px rgba(0, 0, 0, 0.98);
+  padding: 3px 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.95), inset 0 1px 4px rgba(0, 0, 0, 0.98);
   display: flex;
   align-items: baseline;
   justify-content: center;
-  margin-bottom: 4px;
   pointer-events: auto;
 }
 
 #currentHumidity {
   font-family: var(--font-mono);
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: var(--ac-amber);
   line-height: 1;
@@ -559,10 +577,10 @@ body {
 
 .nixie-sub-unit {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  color: rgba(245, 83, 0, 0.85);
-  margin-left: 4px;
+  color: rgba(245, 83, 0, 0.9);
+  margin-left: 3px;
 }
 
 .nixie-unit {

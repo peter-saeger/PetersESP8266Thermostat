@@ -197,9 +197,18 @@ void loop() {
     lastTempCheck = currentMillis;
     float readVal = dht.readTemperature(true);
     float humVal = dht.readHumidity();
-    if (!isnan(humVal)) {
+    
+    if (!isnan(humVal) && humVal > 0.0) {
       currentHumidity = humVal;
+    } else {
+      // If DHT22 read failed, try reading humidity without force or retry
+      float retryHum = dht.readHumidity(true);
+      if (!isnan(retryHum) && retryHum > 0.0) {
+        currentHumidity = retryHum;
+      }
     }
+    
+    Serial.printf("[DHT] Temp: %.1f F | Humidity: %.1f %%\n", readVal, currentHumidity);
     thermo.addTemperatureReading(readVal);
     
     if (thermo.updateRelayState()) {
