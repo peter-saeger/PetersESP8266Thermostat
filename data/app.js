@@ -305,7 +305,7 @@ async function saveBounds() {
 
   if (lowVal >= highVal) {
     feedback.className = "form-feedback error";
-    feedback.textContent = "Low bound must be lower than High bound!";
+    feedback.textContent = "Low setting must be lower than High setting!";
     return;
   }
 
@@ -322,14 +322,14 @@ async function saveBounds() {
 
     if (res.ok) {
       feedback.className = "form-feedback success";
-      feedback.textContent = "Bounds updated successfully!";
+      feedback.textContent = "Settings updated successfully!";
       setTimeout(() => { feedback.textContent = ""; }, 3000);
     } else {
       throw new Error("HTTP " + res.status);
     }
   } catch (err) {
     feedback.className = "form-feedback error";
-    feedback.textContent = "Failed to update bounds. Check network.";
+    feedback.textContent = "Failed to update settings. Check network.";
   } finally {
     saveBtn.disabled = false;
   }
