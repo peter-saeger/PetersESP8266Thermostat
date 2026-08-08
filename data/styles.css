@@ -117,11 +117,11 @@ body {
   background: var(--chassis-bg);
   border: 2.5px solid #475569;
   border-radius: 28px;
-  padding: 32px;
+  padding: 20px 24px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), inset 0 2px 4px rgba(255, 255, 255, 0.2);
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 }
 
 /* Chassis Mounting Bolts */
@@ -146,16 +146,16 @@ body {
   transform: rotate(45deg);
 }
 
-.bolt-tl { top: 16px; left: 16px; }
-.bolt-tr { top: 16px; right: 16px; }
-.bolt-bl { bottom: 16px; left: 16px; }
-.bolt-br { bottom: 16px; right: 16px; }
+.bolt-tl { top: 12px; left: 12px; }
+.bolt-tr { top: 12px; right: 12px; }
+.bolt-bl { bottom: 12px; left: 12px; }
+.bolt-br { bottom: 12px; right: 12px; }
 
-/* Cluster Grid Layout */
+/* Cluster Grid Layout - Tight Tighter Side Spacing */
 .cluster-grid {
   display: grid;
-  grid-template-columns: 210px 1fr 240px;
-  gap: 24px;
+  grid-template-columns: 190px 1fr 220px;
+  gap: 14px;
   align-items: center;
 }
 
