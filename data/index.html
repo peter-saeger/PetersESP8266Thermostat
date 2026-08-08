@@ -84,44 +84,42 @@
                   </filter>
                 </defs>
 
-                <!-- Outer Thin Chrome Bezel Ring (stroke 2px) -->
+                <!-- Outer Thin Chrome Bezel Ring -->
                 <circle cx="100" cy="100" r="97" fill="none" stroke="url(#chromeBezelGrad)" stroke-width="2.5"/>
 
-                <!-- Analog Gauge Scale Tick Marks -->
+                <!-- Outer Scale Tick Marks (r = 88 to 95) -->
                 <g class="gauge-scale-ticks" stroke="#f7ebe1" opacity="0.5">
-                  <line x1="39.9" y1="160.1" x2="35.6" y2="164.4" stroke-width="1.8" />
-                  <line x1="16" y1="100" x2="22" y2="100" stroke-width="1.8" />
-                  <line x1="39.9" y1="39.9" x2="35.6" y2="35.6" stroke-width="1.8" />
-                  <line x1="100" y1="16" x2="100" y2="22" stroke-width="1.8" />
-                  <line x1="160.1" y1="39.9" x2="164.4" y2="35.6" stroke-width="1.8" />
-                  <line x1="184" y1="100" x2="178" y2="100" stroke-width="1.8" />
-                  <line x1="160.1" y1="160.1" x2="164.4" y2="164.4" stroke-width="1.8" />
+                  <line x1="37.8" y1="162.2" x2="32.8" y2="167.2" stroke-width="1.8" />
+                  <line x1="12" y1="100" x2="5" y2="100" stroke-width="1.8" />
+                  <line x1="37.8" y1="37.8" x2="32.8" y2="32.8" stroke-width="1.8" />
+                  <line x1="100" y1="12" x2="100" y2="5" stroke-width="1.8" />
+                  <line x1="162.2" y1="37.8" x2="167.2" y2="32.8" stroke-width="1.8" />
+                  <line x1="188" y1="100" x2="195" y2="100" stroke-width="1.8" />
+                  <line x1="162.2" y1="162.2" x2="167.2" y2="167.2" stroke-width="1.8" />
                 </g>
 
-                <!-- Larger, Bold Scale Degree Numbers (font-size 13.5px) -->
-                <g class="scale-degree-text" fill="#f7ebe1" font-size="13.5" font-weight="900" text-anchor="middle">
-                  <text x="48" y="156">40°</text>
-                  <text x="26" y="105">50°</text>
-                  <text x="48" y="44">60°</text>
-                  <text x="100" y="28">65°</text>
-                  <text x="152" y="44">70°</text>
-                  <text x="174" y="105">80°</text>
-                  <text x="152" y="156">90°</text>
+                <!-- Scale Degree Numbers Outward near Ticks (r = 80, font-size = 12.5px) -->
+                <g class="scale-degree-text" fill="#f7ebe1" font-size="12.5" font-weight="900" text-anchor="middle">
+                  <text x="42" y="162">40°</text>
+                  <text x="22" y="104">50°</text>
+                  <text x="44" y="42">60°</text>
+                  <text x="100" y="24">65°</text>
+                  <text x="156" y="42">70°</text>
+                  <text x="178" y="104">80°</text>
+                  <text x="158" y="162">90°</text>
                 </g>
 
-                <!-- Sleek, Thinner Background Track Arc (Radius = 66, stroke-width = 5) -->
-                <path d="M 53.38 146.62 A 66 66 0 1 1 146.62 146.62" fill="none" stroke="rgba(247,235,225,0.14)" stroke-width="5" stroke-linecap="round"/>
-                
-                <!-- Sleek, Thinner Active Temperature Range Arc (Radius = 66, stroke-width = 5) -->
-                <path id="activeTrack" d="M 53.38 146.62 A 66 66 0 0 1 146.62 146.62" fill="none" stroke="#f55300" stroke-width="5" stroke-linecap="round" filter="url(#glowOrange)"/>
+                <!-- Active Range Arc Track Inward (Radius = 58, stroke-width = 4.5) -->
+                <path d="M 58.99 141.01 A 58 58 0 1 1 141.01 141.01" fill="none" stroke="rgba(247,235,225,0.12)" stroke-width="4.5" stroke-linecap="round"/>
+                <path id="activeTrack" d="M 58.99 141.01 A 58 58 0 0 1 141.01 141.01" fill="none" stroke="#f55300" stroke-width="4.5" stroke-linecap="round" filter="url(#glowOrange)"/>
 
-                <!-- Pointer Needle (stroke-width = 2.5) -->
+                <!-- Pointer Needle -->
                 <line id="tempNeedle" x1="100" y1="100" x2="100" y2="34" stroke="#ff9e00" stroke-width="2.5" stroke-linecap="round" filter="url(#glowOrange)"/>
                 <circle cx="100" cy="100" r="5.5" fill="#1e293b" stroke="#ff9e00" stroke-width="2"/>
 
-                <!-- Interactive Handles for Low & High Settings (Radius = 66) -->
-                <circle id="lowHandle" class="drag-handle" cx="53.38" cy="146.62" r="8" fill="#181e29" stroke="#f55300" stroke-width="2.5"/>
-                <circle id="highHandle" class="drag-handle" cx="146.62" cy="146.62" r="8" fill="#181e29" stroke="#ff9e00" stroke-width="2.5"/>
+                <!-- Interactive Range Drag Handles (Radius = 58) -->
+                <circle id="lowHandle" class="drag-handle" cx="58.99" cy="141.01" r="7.5" fill="#181e29" stroke="#f55300" stroke-width="2.5"/>
+                <circle id="highHandle" class="drag-handle" cx="141.01" cy="141.01" r="7.5" fill="#181e29" stroke="#ff9e00" stroke-width="2.5"/>
               </svg>
 
               <!-- Center Digital Readout Box -->

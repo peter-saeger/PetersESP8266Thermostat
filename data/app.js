@@ -47,7 +47,7 @@ function onFreezeToggleChange(checked) {
 }
 
 // Circular Dial Math & Drag Logic
-function valToXY(val, radius = 66) {
+function valToXY(val, radius = 58) {
   const min = 40, max = 90;
   const clamped = Math.max(min, Math.min(max, val));
   const percent = (clamped - min) / (max - min);
@@ -76,7 +76,7 @@ function xyToVal(x, y) {
 }
 
 function updateActiveTrack(low, high) {
-  const radius = 66;
+  const radius = 58;
   const p1 = valToXY(low, radius);
   const p2 = valToXY(high, radius);
   const diff = high - low;
