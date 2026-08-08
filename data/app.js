@@ -332,6 +332,12 @@ function updateUI(data) {
     }
   }
 
+  if (data.humidity !== undefined) {
+    const humNum = parseFloat(data.humidity);
+    const humElem = document.getElementById("currentHumidity");
+    if (humElem) humElem.textContent = humNum.toFixed(0);
+  }
+
   if (data.lowTemp !== undefined) {
     const lowVal = parseFloat(data.lowTemp).toFixed(0);
     const dispLow = document.getElementById("dispLowTemp");

@@ -18,6 +18,8 @@
 DHT dht(DHTPIN, DHTTYPE);
 ThermostatLogic thermo;
 
+float currentHumidity = 0.0;
+
 // Dynamic History Buffer (RAM)
 struct HistoryPoint {
   unsigned long timestampSec;
@@ -67,12 +69,12 @@ void setup() {
     Serial.println("[FS] LittleFS Mounted Successfully.");
   }
 
-  // Load saved bounds from config.json
-  loadConfig();
-
   // Initialize DHT Sensor
   dht.begin();
   thermo.resetSmoothing(60.0);
+
+  // Load saved bounds from config.json
+  loadConfig();
 
   // WiFiManager - AutoConnect / Captive Portal
   WiFiManager wm;
@@ -95,6 +97,7 @@ void setup() {
     StaticJsonDocument<256> doc;
     doc["temperature"] = serialized(String(thermo.getAverageTemp(), 1));
     doc["rawTemp"] = serialized(String(thermo.getCurrentTemp(), 1));
+    doc["humidity"] = serialized(String(currentHumidity, 1));
     doc["relayStatus"] = thermo.isHeating() ? 1 : 0;
     doc["lowTemp"] = serialized(String(thermo.getLowBound(), 1));
     doc["highTemp"] = serialized(String(thermo.getHighBound(), 1));
@@ -193,6 +196,10 @@ void loop() {
   if (currentMillis - lastTempCheck >= TEMP_CHECK_INTERVAL) {
     lastTempCheck = currentMillis;
     float readVal = dht.readTemperature(true);
+    float humVal = dht.readHumidity();
+    if (!isnan(humVal)) {
+      currentHumidity = humVal;
+    }
     thermo.addTemperatureReading(readVal);
     
     if (thermo.updateRelayState()) {
@@ -216,6 +223,7 @@ void broadcastStatus() {
   doc["type"] = "status";
   doc["temperature"] = serialized(String(thermo.getAverageTemp(), 1));
   doc["rawTemp"] = serialized(String(thermo.getCurrentTemp(), 1));
+  doc["humidity"] = serialized(String(currentHumidity, 1));
   doc["relayStatus"] = thermo.isHeating() ? 1 : 0;
   doc["lowTemp"] = serialized(String(thermo.getLowBound(), 1));
   doc["highTemp"] = serialized(String(thermo.getHighBound(), 1));

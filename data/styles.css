@@ -517,22 +517,52 @@ body {
   background: #06080d; /* Opaque solid dark background so needle line never shows over numbers */
   border: 1.5px solid var(--ac-orange);
   border-radius: 8px;
-  padding: 6px 22px;
+  padding: 4px 20px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.95), inset 0 2px 8px rgba(0, 0, 0, 0.98);
   display: flex;
   align-items: baseline;
   justify-content: center;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   pointer-events: auto;
 }
 
 #currentTemp {
   font-family: var(--font-mono);
-  font-size: 3.8rem;
+  font-size: 3.6rem;
   font-weight: 700;
   color: var(--ac-amber);
   line-height: 1;
   text-shadow: 0 0 16px var(--ac-amber-glow);
+}
+
+.digital-nixie-subwindow {
+  background: #06080d;
+  border: 1px solid rgba(245, 83, 0, 0.4);
+  border-radius: 6px;
+  padding: 2px 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.9), inset 0 1px 4px rgba(0, 0, 0, 0.98);
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin-bottom: 4px;
+  pointer-events: auto;
+}
+
+#currentHumidity {
+  font-family: var(--font-mono);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--ac-amber);
+  line-height: 1;
+  text-shadow: 0 0 10px var(--ac-amber-glow);
+}
+
+.nixie-sub-unit {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(245, 83, 0, 0.85);
+  margin-left: 4px;
 }
 
 .nixie-unit {
