@@ -2,6 +2,7 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 #include <ESP8266HTTPUpdateServer.h>
+#include <ESP8266mDNS.h>
 #include <LittleFS.h>
 #include <WiFiManager.h>
 #include <ArduinoJson.h>
@@ -173,9 +174,16 @@ void setup() {
     }
   });
   Serial.println("[WS] WebSocket Server Started on Port 81.");
+
+  // Start mDNS Responder (http://thermostat.local)
+  if (MDNS.begin("thermostat")) {
+    MDNS.addService("http", "tcp", 80);
+    Serial.println("[mDNS] Responder started: http://thermostat.local");
+  }
 }
 
 void loop() {
+  MDNS.update();
   server.handleClient();
   webSocket.loop();
 
