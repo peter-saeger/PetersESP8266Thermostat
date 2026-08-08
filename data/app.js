@@ -165,7 +165,7 @@ function initDial() {
   function endDrag() {
     if (activeHandle) {
       activeHandle = null;
-      debouncedSaveBounds(400);
+      saveBounds(); // Save immediately on release!
     }
   }
   
