@@ -15,10 +15,11 @@
     <!-- Header -->
     <header class="header">
       <div class="brand">
-        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/>
-        </svg>
-        <h1>Shop Thermostat</h1>
+        <div class="brand-badge-ac">AC</div>
+        <div class="brand-title-wrap">
+          <h1>ALLIS-CHALMERS</h1>
+          <span class="brand-subtitle">SHOP THERMO-CONTROL</span>
+        </div>
       </div>
       <div class="status-badges">
         <span id="connectionBadge" class="badge badge-connecting">Connecting...</span>
@@ -29,24 +30,56 @@
     <main class="dashboard-grid">
       <!-- Thermostat Hero Card -->
       <section class="card hero-card" id="heroCard">
-        <div class="dial-container">
-          <svg class="dial-svg" viewBox="0 0 200 200" id="dialSvg">
-            <!-- Background track (Span: 135 deg to 405 deg) -->
-            <path d="M 36.36 163.64 A 90 90 0 1 1 163.64 163.64" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="10" stroke-linecap="round"/>
-            <!-- Active range track -->
-            <path id="activeTrack" d="M 36.36 163.64 A 90 90 0 0 1 163.64 163.64" fill="none" stroke="var(--accent-blue)" stroke-width="10" stroke-linecap="round"/>
+        <div class="screw top-left"></div>
+        <div class="screw top-right"></div>
+        <div class="screw bottom-left"></div>
+        <div class="screw bottom-right"></div>
+
+        <div class="dial-bezel-outer">
+          <div class="dial-container">
+            <svg class="dial-svg" viewBox="0 0 200 200" id="dialSvg">
+              <!-- Outer Metallic Bezel Ring -->
+              <circle cx="100" cy="100" r="97" fill="none" stroke="url(#chromeGradient)" stroke-width="5" />
+              <defs>
+                <linearGradient id="chromeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#f1f5f9"/>
+                  <stop offset="25%" stop-color="#94a3b8"/>
+                  <stop offset="50%" stop-color="#334155"/>
+                  <stop offset="75%" stop-color="#cbd5e1"/>
+                  <stop offset="100%" stop-color="#f8fafc"/>
+                </linearGradient>
+              </defs>
+
+              <!-- Gauge Scale Tick Marks -->
+              <g class="gauge-ticks" opacity="0.35">
+                <!-- Ticks from 225 deg to 495 deg -->
+                <line x1="36.36" y1="163.64" x2="43.43" y2="156.57" stroke="#F7EBE1" stroke-width="2" />
+                <line x1="16" y1="100" x2="26" y2="100" stroke="#F7EBE1" stroke-width="2" />
+                <line x1="36.36" y1="36.36" x2="43.43" y2="43.43" stroke="#F7EBE1" stroke-width="2" />
+                <line x1="100" y1="16" x2="100" y2="26" stroke="#F7EBE1" stroke-width="2" />
+                <line x1="163.64" y1="36.36" x2="156.57" y2="43.43" stroke="#F7EBE1" stroke-width="2" />
+                <line x1="184" y1="100" x2="174" y2="100" stroke="#F7EBE1" stroke-width="2" />
+                <line x1="163.64" y1="163.64" x2="156.57" y2="156.57" stroke="#F7EBE1" stroke-width="2" />
+              </g>
+
+              <!-- Background track (Span: 135 deg to 405 deg) -->
+              <path d="M 36.36 163.64 A 90 90 0 1 1 163.64 163.64" fill="none" stroke="rgba(247,235,225,0.12)" stroke-width="12" stroke-linecap="round"/>
+              <!-- Active range track -->
+              <path id="activeTrack" d="M 36.36 163.64 A 90 90 0 0 1 163.64 163.64" fill="none" stroke="var(--ac-orange)" stroke-width="12" stroke-linecap="round"/>
+              
+              <!-- Handles -->
+              <circle id="lowHandle" class="drag-handle" cx="36.36" cy="163.64" r="11" fill="#fff" stroke="var(--ac-orange)" stroke-width="3.5"/>
+              <circle id="highHandle" class="drag-handle" cx="163.64" cy="163.64" r="11" fill="#fff" stroke="var(--ac-amber)" stroke-width="3.5"/>
+            </svg>
             
-            <!-- Handles -->
-            <circle id="lowHandle" class="drag-handle" cx="36.36" cy="163.64" r="10" fill="#fff" stroke="var(--accent-blue)" stroke-width="3"/>
-            <circle id="highHandle" class="drag-handle" cx="163.64" cy="163.64" r="10" fill="#fff" stroke="var(--accent-orange)" stroke-width="3"/>
-          </svg>
-          
-          <div class="dial-inner" id="dialInner">
-            <div class="temp-label">CURRENT TEMP</div>
-            <div class="temp-display">
-              <span id="currentTemp">--</span><span class="unit">&deg;F</span>
+            <div class="dial-inner" id="dialInner">
+              <div class="gauge-brand">ALLIS-CHALMERS</div>
+              <div class="temp-label">SHOP TEMP</div>
+              <div class="temp-display">
+                <span id="currentTemp">--</span><span class="unit">&deg;F</span>
+              </div>
+              <div class="temp-status" id="heatStatus">STANDBY</div>
             </div>
-            <div class="temp-status" id="heatStatus">STANDBY</div>
           </div>
         </div>
         <div class="hero-footer">
@@ -66,6 +99,11 @@
 
       <!-- Controls Card -->
       <section class="card controls-card">
+        <div class="screw top-left"></div>
+        <div class="screw top-right"></div>
+        <div class="screw bottom-left"></div>
+        <div class="screw bottom-right"></div>
+
         <h2>Temperature Bounds</h2>
         <p class="subtitle">Set automatic heater trigger bounds</p>
 
@@ -99,6 +137,11 @@
 
       <!-- History Chart Card -->
       <section class="card chart-card">
+        <div class="screw top-left"></div>
+        <div class="screw top-right"></div>
+        <div class="screw bottom-left"></div>
+        <div class="screw bottom-right"></div>
+
         <div class="chart-header">
           <h2>Temperature History</h2>
           <button class="icon-btn" onclick="fetchHistory()" title="Refresh Chart">
