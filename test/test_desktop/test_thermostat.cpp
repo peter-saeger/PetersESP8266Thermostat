@@ -90,6 +90,25 @@ void test_set_bounds_validation(void) {
     TEST_ASSERT_EQUAL_FLOAT(65.0, thermo.getHighBound());
 }
 
+void test_nan_sensor_reading_ignored(void) {
+    // Current average is 60.0. Passing NAN should be safely ignored.
+    thermo.addTemperatureReading(0.0 / 0.0); // NAN
+    TEST_ASSERT_EQUAL_FLOAT(60.0, thermo.getAverageTemp());
+}
+
+void test_reset_smoothing(void) {
+    // Fill buffer with 70.0
+    for (int i = 0; i < ThermostatLogic::TEMP_SMOOTHING_COUNT; i++) {
+        thermo.addTemperatureReading(70.0);
+    }
+    TEST_ASSERT_EQUAL_FLOAT(70.0, thermo.getAverageTemp());
+
+    // Reset smoothing to 55.0
+    thermo.resetSmoothing(55.0);
+    TEST_ASSERT_EQUAL_FLOAT(55.0, thermo.getCurrentTemp());
+    TEST_ASSERT_EQUAL_FLOAT(55.0, thermo.getAverageTemp());
+}
+
 int main(int argc, char **argv) {
     UNITY_BEGIN();
     RUN_TEST(test_initial_state);
@@ -98,5 +117,7 @@ int main(int argc, char **argv) {
     RUN_TEST(test_hysteresis_heating_off);
     RUN_TEST(test_hysteresis_stays_on_in_deadband);
     RUN_TEST(test_set_bounds_validation);
+    RUN_TEST(test_nan_sensor_reading_ignored);
+    RUN_TEST(test_reset_smoothing);
     return UNITY_END();
 }
