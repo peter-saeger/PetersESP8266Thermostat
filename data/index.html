@@ -7,164 +7,168 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <div class="app-container">
-    
-    <!-- Top Header -->
+
+    <!-- Header: Just Lon's Shop Heat -->
     <header class="header">
       <div class="brand">
-        <div class="ac-shield-logo">
-          <span class="ac-logo-text">AC</span>
-        </div>
-        <div class="brand-text">
-          <h1>Lon's Shop Heat</h1>
-          <span class="brand-sub">ALLIS-CHALMERS VINTAGE THERMO-CONTROL</span>
-        </div>
+        <h1>Lon's Shop Heat</h1>
       </div>
       <div class="status-badges">
         <span id="connectionBadge" class="badge badge-connecting">Connecting...</span>
       </div>
     </header>
 
-    <!-- Main Instrument Panel Frame -->
-    <main class="instrument-panel">
-      <!-- Metallic Bolts -->
-      <div class="panel-bolt bolt-tl"></div>
-      <div class="panel-bolt bolt-tr"></div>
-      <div class="panel-bolt bolt-bl"></div>
-      <div class="panel-bolt bolt-br"></div>
+    <!-- Main 1950s Instrument Cluster Chassis -->
+    <main class="chassis-panel">
+      <!-- Casing Bolts -->
+      <div class="bolt bolt-tl"></div>
+      <div class="bolt bolt-tr"></div>
+      <div class="bolt bolt-bl"></div>
+      <div class="bolt bolt-br"></div>
 
-      <div class="panel-grid">
+      <div class="cluster-grid">
         
-        <!-- Left Auxiliary Gauge Bay -->
-        <div class="bay bay-left">
-          <!-- Small Humidity/Signal Round Gauge -->
-          <div class="mini-gauge-box">
-            <div class="mini-gauge-bezel">
+        <!-- Left Auxiliary Panel -->
+        <div class="cluster-col col-left">
+          
+          <!-- Mini Signal Gauge -->
+          <div class="aux-gauge-card">
+            <div class="mini-bezel">
               <svg class="mini-gauge-svg" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="45" fill="#141822" stroke="url(#chromeGradient)" stroke-width="4"/>
-                <path d="M 22 78 A 38 38 0 1 1 78 78" fill="none" stroke="rgba(247,235,225,0.15)" stroke-width="3" stroke-dasharray="2,3"/>
-                <!-- Mini needle for RSSI / Signal -->
+                <circle cx="50" cy="50" r="46" fill="#111622" stroke="url(#miniChrome)" stroke-width="5"/>
+                <defs>
+                  <linearGradient id="miniChrome" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#ffffff"/>
+                    <stop offset="50%" stop-color="#475569"/>
+                    <stop offset="100%" stop-color="#cbd5e1"/>
+                  </linearGradient>
+                </defs>
+                <path d="M 22 78 A 38 38 0 1 1 78 78" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="3" stroke-dasharray="3,3"/>
                 <line id="miniNeedle" x1="50" y1="50" x2="30" y2="30" stroke="#f55300" stroke-width="2.5" stroke-linecap="round"/>
-                <circle cx="50" cy="50" r="4" fill="#cbd5e1"/>
+                <circle cx="50" cy="50" r="5" fill="#e2e8f0"/>
               </svg>
-              <div class="mini-gauge-label">WIFI SIGNAL</div>
-              <div class="mini-gauge-val" id="dispRssiVal">-- dBm</div>
             </div>
+            <div class="aux-label">WIFI SIGNAL</div>
+            <div class="aux-val" id="dispRssiVal">-- dBm</div>
           </div>
 
-          <!-- Vintage Illuminated Status Lamp -->
-          <div class="lamp-box">
-            <div class="status-lamp" id="statusLamp">
-              <div class="lamp-inner"></div>
-            </div>
-            <div class="lamp-title" id="heatStatusText">STANDBY</div>
-          </div>
-        </div>
-
-        <!-- Center Main Gauge Bay -->
-        <div class="bay bay-center">
-          <div class="main-gauge-housing">
-            <div class="gauge-bezel-ring">
-              <div class="gauge-face">
-                
-                <svg class="dial-svg" viewBox="0 0 200 200" id="dialSvg">
-                  <defs>
-                    <linearGradient id="chromeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stop-color="#ffffff"/>
-                      <stop offset="20%" stop-color="#cbd5e1"/>
-                      <stop offset="45%" stop-color="#334155"/>
-                      <stop offset="70%" stop-color="#94a3b8"/>
-                      <stop offset="100%" stop-color="#e2e8f0"/>
-                    </linearGradient>
-                    <filter id="amberGlow" x="-20%" y="-20%" width="140%" height="140%">
-                      <feGaussianBlur stdDeviation="3" result="blur" />
-                      <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                    </filter>
-                  </defs>
-
-                  <!-- Dial Scale Ticks & Numbers -->
-                  <g class="gauge-scale" opacity="0.45" stroke="#f7ebe1">
-                    <!-- Major Tick Marks at 40, 50, 60, 70, 80, 90 deg -->
-                    <line x1="36.36" y1="163.64" x2="44.43" y2="155.57" stroke-width="2.5" />
-                    <line x1="20" y1="100" x2="30" y2="100" stroke-width="2.5" />
-                    <line x1="36.36" y1="36.36" x2="44.43" y2="44.43" stroke-width="2.5" />
-                    <line x1="100" y1="20" x2="100" y2="30" stroke-width="2.5" />
-                    <line x1="163.64" y1="36.36" x2="155.57" y2="44.43" stroke-width="2.5" />
-                    <line x1="180" y1="100" x2="170" y2="100" stroke-width="2.5" />
-                    <line x1="163.64" y1="163.64" x2="155.57" y2="155.57" stroke-width="2.5" />
-                  </g>
-
-                  <!-- Scale Degree Labels -->
-                  <g class="scale-text" fill="#f7ebe1" font-size="9" font-weight="700" text-anchor="middle">
-                    <text x="50" y="160">40°</text>
-                    <text x="36" y="103">50°</text>
-                    <text x="50" y="48">60°</text>
-                    <text x="100" y="38">65°</text>
-                    <text x="150" y="48">70°</text>
-                    <text x="164" y="103">80°</text>
-                    <text x="150" y="160">90°</text>
-                  </g>
-
-                  <!-- Track Arc -->
-                  <path d="M 36.36 163.64 A 90 90 0 1 1 163.64 163.64" fill="none" stroke="rgba(247,235,225,0.12)" stroke-width="12" stroke-linecap="round"/>
-                  <!-- Active range track -->
-                  <path id="activeTrack" d="M 36.36 163.64 A 90 90 0 0 1 163.64 163.64" fill="none" stroke="#f55300" stroke-width="12" stroke-linecap="round" filter="url(#amberGlow)"/>
-                  
-                  <!-- Analog Temperature Needle Line -->
-                  <line id="tempNeedle" x1="100" y1="100" x2="100" y2="28" stroke="#ff9e00" stroke-width="3" stroke-linecap="round"/>
-
-                  <!-- Handles for Low & High Bounds -->
-                  <circle id="lowHandle" class="drag-handle" cx="36.36" cy="163.64" r="12" fill="#181e29" stroke="#f55300" stroke-width="3.5"/>
-                  <circle id="highHandle" class="drag-handle" cx="163.64" cy="163.64" r="12" fill="#181e29" stroke="#ff9e00" stroke-width="3.5"/>
-                </svg>
-
-                <div class="dial-center-content" id="dialInner">
-                  <div class="ac-brand-text">ALLIS-CHALMERS</div>
-                  <div class="temp-readout-box">
-                    <span id="currentTemp">--</span><span class="deg-unit">&deg;F</span>
-                  </div>
-                  <div class="gauge-subtext">SHOP TEMP</div>
-                </div>
-
+          <!-- Vintage Push Indicator Lamp -->
+          <div class="indicator-lamp-card">
+            <div class="lamp-bezel" id="lampBezel">
+              <div class="lamp-lens">
+                <span class="lamp-text-top">HEAT</span>
+                <span class="lamp-text-bot" id="heatStatusText">STANDBY</span>
               </div>
             </div>
           </div>
+
         </div>
 
-        <!-- Right Temperature Bounds Controls Bay -->
-        <div class="bay bay-right">
-          <div class="controls-panel">
-            <h3 class="panel-heading">TEMPERATURE RANGE</h3>
+        <!-- Center Main Gauge Cluster -->
+        <div class="cluster-col col-center">
+          <div class="main-gauge-bezel">
+            <div class="gauge-dial-face">
+              
+              <svg class="dial-svg" viewBox="0 0 200 200" id="dialSvg">
+                <defs>
+                  <linearGradient id="chromeBezelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ffffff"/>
+                    <stop offset="25%" stop-color="#cbd5e1"/>
+                    <stop offset="50%" stop-color="#334155"/>
+                    <stop offset="75%" stop-color="#94a3b8"/>
+                    <stop offset="100%" stop-color="#f8fafc"/>
+                  </linearGradient>
+                  <filter id="glowOrange" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="3" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                </defs>
+
+                <!-- Outer Metal Ring -->
+                <circle cx="100" cy="100" r="97" fill="none" stroke="url(#chromeBezelGrad)" stroke-width="6"/>
+
+                <!-- Analog Gauge Scale Tick Marks -->
+                <g class="gauge-scale-ticks" stroke="#f7ebe1" opacity="0.4">
+                  <line x1="36.36" y1="163.64" x2="45.43" y2="154.57" stroke-width="2.5" />
+                  <line x1="16" y1="100" x2="28" y2="100" stroke-width="2.5" />
+                  <line x1="36.36" y1="36.36" x2="45.43" y2="45.43" stroke-width="2.5" />
+                  <line x1="100" y1="16" x2="100" y2="28" stroke-width="2.5" />
+                  <line x1="163.64" y1="36.36" x2="154.57" y2="45.43" stroke-width="2.5" />
+                  <line x1="184" y1="100" x2="172" y2="100" stroke-width="2.5" />
+                  <line x1="163.64" y1="163.64" x2="154.57" y2="154.57" stroke-width="2.5" />
+                </g>
+
+                <!-- Scale Degree Numbers printed on dial face -->
+                <g class="scale-degree-text" fill="#f7ebe1" font-size="9.5" font-weight="800" text-anchor="middle">
+                  <text x="52" y="162">40°</text>
+                  <text x="36" y="103">50°</text>
+                  <text x="52" y="48">60°</text>
+                  <text x="100" y="38">65°</text>
+                  <text x="148" y="48">70°</text>
+                  <text x="164" y="103">80°</text>
+                  <text x="148" y="162">90°</text>
+                </g>
+
+                <!-- Background Track Arc -->
+                <path d="M 36.36 163.64 A 90 90 0 1 1 163.64 163.64" fill="none" stroke="rgba(247,235,225,0.1)" stroke-width="12" stroke-linecap="round"/>
+                
+                <!-- Active Temperature Range Arc -->
+                <path id="activeTrack" d="M 36.36 163.64 A 90 90 0 0 1 163.64 163.64" fill="none" stroke="#f55300" stroke-width="12" stroke-linecap="round" filter="url(#glowOrange)"/>
+
+                <!-- Glowing Orange Pointer Needle -->
+                <line id="tempNeedle" x1="100" y1="100" x2="100" y2="28" stroke="#ff9e00" stroke-width="3.5" stroke-linecap="round" filter="url(#glowOrange)"/>
+                <circle cx="100" cy="100" r="7" fill="#1e293b" stroke="#ff9e00" stroke-width="2"/>
+
+                <!-- Interactive Handles for Low & High Settings -->
+                <circle id="lowHandle" class="drag-handle" cx="36.36" cy="163.64" r="12" fill="#181e29" stroke="#f55300" stroke-width="3.5"/>
+                <circle id="highHandle" class="drag-handle" cx="163.64" cy="163.64" r="12" fill="#181e29" stroke="#ff9e00" stroke-width="3.5"/>
+              </svg>
+
+              <!-- Center Digital Readout Box & Subtitle -->
+              <div class="dial-center-box">
+                <div class="digital-nixie-window">
+                  <span id="currentTemp">--</span><span class="nixie-unit">&deg;F</span>
+                </div>
+                <div class="dial-gauge-title">SHOP THERMOSTAT</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Control Panel Bay -->
+        <div class="cluster-col col-right">
+          <div class="target-controls-box">
+            <div class="control-box-title">TEMPERATURE RANGE</div>
 
             <form id="boundsForm" onsubmit="event.preventDefault(); saveBounds();">
               
-              <!-- Low Temp Control -->
-              <div class="control-box">
+              <div class="setting-row">
                 <label for="lowTempInput">HEATER ON (LOW)</label>
-                <div class="vintage-stepper">
-                  <button type="button" class="stepper-btn" onclick="stepBound('lowTempInput', -1)">&minus;</button>
+                <div class="gauge-stepper">
+                  <button type="button" class="g-step-btn" onclick="stepBound('lowTempInput', -1)">&minus;</button>
                   <input type="number" id="lowTempInput" name="lowTemp" min="40" max="80" step="1" value="50" required>
-                  <button type="button" class="stepper-btn" onclick="stepBound('lowTempInput', 1)">&plus;</button>
-                  <span class="unit-tag">&deg;F</span>
+                  <button type="button" class="g-step-btn" onclick="stepBound('lowTempInput', 1)">&plus;</button>
+                  <span class="g-unit">&deg;F</span>
                 </div>
               </div>
 
-              <!-- High Temp Control -->
-              <div class="control-box">
+              <div class="setting-row">
                 <label for="highTempInput">HEATER OFF (HIGH)</label>
-                <div class="vintage-stepper">
-                  <button type="button" class="stepper-btn" onclick="stepBound('highTempInput', -1)">&minus;</button>
+                <div class="gauge-stepper">
+                  <button type="button" class="g-step-btn" onclick="stepBound('highTempInput', -1)">&minus;</button>
                   <input type="number" id="highTempInput" name="highTemp" min="45" max="85" step="1" value="65" required>
-                  <button type="button" class="stepper-btn" onclick="stepBound('highTempInput', 1)">&plus;</button>
-                  <span class="unit-tag">&deg;F</span>
+                  <button type="button" class="g-step-btn" onclick="stepBound('highTempInput', 1)">&plus;</button>
+                  <span class="g-unit">&deg;F</span>
                 </div>
               </div>
 
-              <button type="submit" class="apply-switch-btn" id="saveBtn">APPLY</button>
+              <button type="submit" class="metal-apply-btn" id="saveBtn">APPLY</button>
               <div id="formFeedback" class="form-feedback"></div>
 
             </form>
@@ -173,28 +177,28 @@
 
       </div>
 
-      <!-- Bottom Mechanical Switch & Instrument Console -->
-      <div class="console-row">
-        <div class="console-summary">
-          <div class="summary-pill">
-            <span class="lbl">TARGET LOW</span>
-            <span class="val" id="dispLowTemp">--&deg;F</span>
+      <!-- Bottom Console Switch Bar -->
+      <div class="switch-bar">
+        <div class="console-readout">
+          <div class="readout-pill">
+            <span class="rp-lbl">TARGET LOW</span>
+            <span class="rp-val" id="dispLowTemp">--&deg;F</span>
           </div>
-          <div class="summary-pill">
-            <span class="lbl">TARGET HIGH</span>
-            <span class="val" id="dispHighTemp">--&deg;F</span>
+          <div class="readout-pill">
+            <span class="rp-lbl">TARGET HIGH</span>
+            <span class="rp-val" id="dispHighTemp">--&deg;F</span>
           </div>
         </div>
       </div>
-      
+
     </main>
 
-    <!-- History Chart Section -->
+    <!-- History Chart Card -->
     <section class="card chart-card">
-      <div class="screw top-left"></div>
-      <div class="screw top-right"></div>
-      <div class="screw bottom-left"></div>
-      <div class="screw bottom-right"></div>
+      <div class="bolt bolt-tl"></div>
+      <div class="bolt bolt-tr"></div>
+      <div class="bolt bolt-bl"></div>
+      <div class="bolt bolt-br"></div>
 
       <div class="chart-header">
         <h2>Temperature History</h2>

@@ -260,16 +260,16 @@ function updateUI(data) {
   if (data.relayStatus !== undefined) {
     const isHeating = data.relayStatus === 1 || data.relayStatus === true;
     const dialInner = document.getElementById("dialInner");
-    const statusLamp = document.getElementById("statusLamp");
+    const lampBezel = document.getElementById("lampBezel") || document.getElementById("statusLamp");
     const heatStatusText = document.getElementById("heatStatusText");
 
     if (isHeating) {
       if (dialInner) dialInner.classList.add("heating");
-      if (statusLamp) statusLamp.classList.add("heating");
+      if (lampBezel) lampBezel.classList.add("heating");
       if (heatStatusText) heatStatusText.textContent = "HEATING";
     } else {
       if (dialInner) dialInner.classList.remove("heating");
-      if (statusLamp) statusLamp.classList.remove("heating");
+      if (lampBezel) lampBezel.classList.remove("heating");
       if (heatStatusText) heatStatusText.textContent = "STANDBY";
     }
   }

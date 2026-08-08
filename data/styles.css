@@ -1,20 +1,20 @@
 :root {
-  --bg-primary: #0b0e14;
-  --panel-bg: linear-gradient(160deg, #1c2432 0%, #111620 100%);
-  --panel-border: #475569;
-  --card-bg: linear-gradient(145deg, rgba(26, 32, 44, 0.95), rgba(15, 19, 26, 0.98));
-  --card-border: rgba(247, 235, 225, 0.12);
+  --bg-primary: #0a0d14;
+  --chassis-bg: linear-gradient(165deg, #232c3c 0%, #151b26 50%, #0c1017 100%);
+  --chassis-border: #475569;
+  --card-bg: linear-gradient(145deg, rgba(22, 28, 38, 0.95), rgba(12, 16, 22, 0.98));
+  --card-border: rgba(247, 235, 225, 0.14);
   
   --text-main: #f7ebe1;
   --text-muted: #94a3b8;
   
   --ac-orange: #f55300;
-  --ac-orange-glow: rgba(245, 83, 0, 0.45);
+  --ac-orange-glow: rgba(245, 83, 0, 0.5);
   --ac-amber: #ff9e00;
-  --ac-amber-glow: rgba(255, 158, 0, 0.5);
+  --ac-amber-glow: rgba(255, 158, 0, 0.6);
 
-  --radius-lg: 20px;
-  --radius-md: 12px;
+  --radius-lg: 24px;
+  --radius-md: 14px;
   --radius-sm: 8px;
   --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'Share Tech Mono', monospace;
@@ -42,53 +42,27 @@ body {
 
 .app-container {
   width: 100%;
-  max-width: 1020px;
+  max-width: 1040px;
   display: flex;
   flex-direction: column;
   gap: 22px;
 }
 
-/* Header & Allis-Chalmers Branding */
+/* Header - Clean Lon's Shop Heat */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 4px 6px;
+  padding: 4px 8px;
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.ac-shield-logo {
-  background: linear-gradient(135deg, #f55300 0%, #cc4200 100%);
-  color: #ffffff;
+.brand h1 {
+  font-size: 1.75rem;
   font-weight: 900;
-  font-size: 1.3rem;
-  padding: 6px 14px;
-  border-radius: 6px;
-  letter-spacing: 0.06em;
-  box-shadow: 0 4px 14px rgba(245, 83, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.5);
-  border: 1.5px solid #ff7a29;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-}
-
-.brand-text h1 {
-  font-size: 1.5rem;
-  font-weight: 800;
   letter-spacing: 0.04em;
   color: var(--text-main);
-  line-height: 1.1;
-}
-
-.brand-sub {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  color: var(--ac-orange);
-  display: block;
+  text-transform: uppercase;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .status-badges {
@@ -97,12 +71,12 @@ body {
 }
 
 .badge {
-  padding: 6px 14px;
+  padding: 6px 16px;
   border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 700;
+  font-size: 0.82rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   text-decoration: none;
   transition: all 0.3s ease;
 }
@@ -137,84 +111,84 @@ body {
   border-color: var(--ac-orange);
 }
 
-/* 1950s Tractor Instrument Panel Frame */
-.instrument-panel {
+/* 1950s Tractor Instrument Panel Chassis Frame */
+.chassis-panel {
   position: relative;
-  background: var(--panel-bg);
-  border: 2px solid #475569;
-  border-radius: 24px;
-  padding: 30px;
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.8), inset 0 2px 3px rgba(255, 255, 255, 0.15);
+  background: var(--chassis-bg);
+  border: 2.5px solid #475569;
+  border-radius: 28px;
+  padding: 32px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), inset 0 2px 4px rgba(255, 255, 255, 0.2);
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
-/* Panel Corner Bolts */
-.panel-bolt {
+/* Chassis Mounting Bolts */
+.bolt {
   position: absolute;
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  background: radial-gradient(circle, #cbd5e1 0%, #64748b 70%, #1e293b 100%);
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8), 0 3px 6px rgba(0, 0, 0, 0.7);
+  background: radial-gradient(circle, #f1f5f9 0%, #64748b 70%, #1e293b 100%);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 4px 8px rgba(0, 0, 0, 0.8);
   z-index: 10;
 }
 
-.panel-bolt::after {
+.bolt::after {
   content: '';
   position: absolute;
-  top: 6px;
+  top: 7px;
   left: 3px;
-  width: 8px;
+  width: 10px;
   height: 2px;
-  background: #1e293b;
+  background: #0f172a;
   transform: rotate(45deg);
 }
 
-.bolt-tl { top: 14px; left: 14px; }
-.bolt-tr { top: 14px; right: 14px; }
-.bolt-bl { bottom: 14px; left: 14px; }
-.bolt-br { bottom: 14px; right: 14px; }
+.bolt-tl { top: 16px; left: 16px; }
+.bolt-tr { top: 16px; right: 16px; }
+.bolt-bl { bottom: 16px; left: 16px; }
+.bolt-br { bottom: 16px; right: 16px; }
 
-/* Panel Grid Layout */
-.panel-grid {
+/* Cluster Grid Layout */
+.cluster-grid {
   display: grid;
   grid-template-columns: 200px 1fr 240px;
   gap: 24px;
   align-items: center;
 }
 
-@media (max-width: 880px) {
-  .panel-grid {
+@media (max-width: 900px) {
+  .cluster-grid {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 32px;
   }
 }
 
-.bay {
+.cluster-col {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-/* Left Auxiliary Gauge Bay */
-.mini-gauge-box {
+/* Left Auxiliary Panel */
+.aux-gauge-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 24px;
 }
 
-.mini-gauge-bezel {
+.mini-bezel {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
-  padding: 4px;
-  background: linear-gradient(135deg, #cbd5e1 0%, #475569 50%, #1e293b 100%);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.6), inset 0 1px 2px rgba(255,255,255,0.4);
+  padding: 5px;
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 25%, #334155 60%, #94a3b8 100%);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.7), inset 0 1px 3px rgba(255,255,255,0.6);
 }
 
 .mini-gauge-svg {
@@ -222,84 +196,93 @@ body {
   height: 100%;
 }
 
-.mini-gauge-label {
-  font-size: 0.62rem;
+.aux-label {
+  font-size: 0.65rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   color: var(--text-muted);
-  margin-top: 6px;
+  margin-top: 8px;
 }
 
-.mini-gauge-val {
-  font-size: 0.85rem;
+.aux-val {
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--ac-amber);
   font-family: var(--font-mono);
 }
 
-/* Vintage Status Lamp */
-.lamp-box {
+/* Vintage Illuminated Status Lamp */
+.indicator-lamp-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
 }
 
-.status-lamp {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  padding: 5px;
-  background: linear-gradient(145deg, #64748b, #1e293b);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.6), inset 0 1px 2px rgba(255,255,255,0.4);
+.lamp-bezel {
+  width: 100px;
+  height: 60px;
+  border-radius: 10px;
+  padding: 4px;
+  background: linear-gradient(135deg, #cbd5e1 0%, #334155 50%, #1e293b 100%);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.7), inset 0 1px 2px rgba(255,255,255,0.4);
 }
 
-.lamp-inner {
+.lamp-lens {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
-  background: radial-gradient(circle, #78350f 0%, #451a03 100%);
+  border-radius: 7px;
+  background: radial-gradient(circle, #451a03 0%, #1a0800 100%);
   border: 1px solid rgba(0,0,0,0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   transition: all 0.4s ease;
 }
 
-.status-lamp.heating .lamp-inner {
-  background: radial-gradient(circle, #ff6000 0%, #b91c1c 100%);
-  box-shadow: 0 0 20px var(--ac-orange-glow);
+.lamp-bezel.heating .lamp-lens {
+  background: radial-gradient(circle, #f55300 0%, #991b1b 100%);
+  box-shadow: 0 0 25px var(--ac-orange-glow);
 }
 
-.lamp-title {
+.lamp-text-top {
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.lamp-bezel.heating .lamp-text-top {
+  color: #ffffff;
+}
+
+.lamp-text-bot {
   font-size: 0.75rem;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 0.12em;
-  color: var(--text-muted);
+  color: var(--ac-amber);
 }
 
-.status-lamp.heating + .lamp-title {
-  color: var(--ac-orange);
+.lamp-bezel.heating .lamp-text-bot {
+  color: #ffffff;
+  text-shadow: 0 0 8px #ffffff;
 }
 
-/* Center Main Gauge Bay */
-.main-gauge-housing {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.gauge-bezel-ring {
+/* Center Main Gauge Cluster */
+.main-gauge-bezel {
   border-radius: 50%;
-  padding: 12px;
-  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 20%, #475569 50%, #1e293b 75%, #94a3b8 100%);
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.9), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+  padding: 14px;
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 20%, #475569 50%, #1e293b 75%, #e2e8f0 100%);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95), inset 0 3px 6px rgba(255, 255, 255, 0.7);
 }
 
-.gauge-face {
+.gauge-dial-face {
   position: relative;
-  width: 260px;
-  height: 260px;
+  width: 270px;
+  height: 270px;
   border-radius: 50%;
-  background: radial-gradient(circle, #181e28 0%, #0e1218 100%);
-  box-shadow: inset 0 8px 25px rgba(0, 0, 0, 0.9);
+  background: radial-gradient(circle, #181e28 0%, #0d1016 100%);
+  box-shadow: inset 0 10px 30px rgba(0, 0, 0, 0.95);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -322,17 +305,17 @@ body {
 
 .drag-handle:hover, .drag-handle:active {
   r: 15;
-  filter: drop-shadow(0 0 12px rgba(245, 83, 0, 0.9));
+  filter: drop-shadow(0 0 14px rgba(245, 83, 0, 0.9));
 }
 
 .drag-handle:active {
   cursor: grabbing;
 }
 
-.dial-center-content {
+.dial-center-box {
   position: absolute;
-  top: 45px;
-  left: 45px;
+  top: 50px;
+  left: 50px;
   width: 170px;
   height: 170px;
   border-radius: 50%;
@@ -344,72 +327,65 @@ body {
   z-index: 1;
 }
 
-.ac-brand-text {
-  font-size: 0.65rem;
-  font-weight: 900;
-  letter-spacing: 0.16em;
-  color: var(--ac-orange);
-  margin-bottom: 6px;
-}
-
-.temp-readout-box {
-  background: #090c10;
+.digital-nixie-window {
+  background: #080b0f;
   border: 1.5px solid var(--ac-orange);
   border-radius: 8px;
-  padding: 4px 16px;
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 15px rgba(245, 83, 0, 0.25);
+  padding: 4px 18px;
+  box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.95), 0 0 18px rgba(245, 83, 0, 0.3);
   display: flex;
   align-items: baseline;
   justify-content: center;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 #currentTemp {
   font-family: var(--font-mono);
-  font-size: 3.2rem;
+  font-size: 3.4rem;
   font-weight: 700;
   color: var(--ac-amber);
   line-height: 1;
-  text-shadow: 0 0 14px var(--ac-amber-glow);
+  text-shadow: 0 0 16px var(--ac-amber-glow);
 }
 
-.deg-unit {
+.nixie-unit {
   font-family: var(--font-mono);
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: var(--ac-orange);
   margin-left: 2px;
 }
 
-.gauge-subtext {
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+.dial-gauge-title {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
   color: var(--text-muted);
 }
 
-/* Right Temperature Bounds Controls Bay */
-.controls-panel {
+/* Right Control Panel Bay */
+.target-controls-box {
   width: 100%;
-  background: rgba(15, 19, 26, 0.7);
-  border: 1px solid var(--card-border);
+  background: rgba(12, 16, 22, 0.85);
+  border: 1.5px solid var(--card-border);
   border-radius: var(--radius-md);
-  padding: 16px;
+  padding: 18px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
 }
 
-.panel-heading {
-  font-size: 0.78rem;
-  font-weight: 800;
+.control-box-title {
+  font-size: 0.8rem;
+  font-weight: 900;
   letter-spacing: 0.1em;
   color: var(--ac-orange);
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   text-align: center;
 }
 
-.control-box {
+.setting-row {
   margin-bottom: 14px;
 }
 
-.control-box label {
+.setting-row label {
   display: block;
   font-size: 0.68rem;
   font-weight: 800;
@@ -418,85 +394,85 @@ body {
   margin-bottom: 6px;
 }
 
-.vintage-stepper {
+.gauge-stepper {
   display: flex;
   align-items: center;
-  background: #090c10;
+  background: #06090d;
   border: 1px solid rgba(247, 235, 225, 0.2);
   border-radius: 8px;
-  padding: 3px;
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.8);
+  padding: 4px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.9);
 }
 
-.stepper-btn {
-  width: 36px;
-  height: 36px;
+.g-step-btn {
+  width: 38px;
+  height: 38px;
   background: linear-gradient(145deg, #334155 0%, #1e293b 100%);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 6px;
   color: var(--text-main);
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.6);
 }
 
-.stepper-btn:hover {
+.g-step-btn:hover {
   background: linear-gradient(145deg, #475569 0%, #334155 100%);
   color: var(--ac-orange);
 }
 
-.vintage-stepper input[type="number"] {
+.gauge-stepper input[type="number"] {
   flex: 1;
   background: transparent;
   border: none;
   color: var(--ac-amber);
   font-family: var(--font-mono);
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: 700;
   text-align: center;
   -moz-appearance: textfield;
 }
 
-.vintage-stepper input[type="number"]::-webkit-outer-spin-button,
-.vintage-stepper input[type="number"]::-webkit-inner-spin-button {
+.gauge-stepper input[type="number"]::-webkit-outer-spin-button,
+.gauge-stepper input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-.unit-tag {
+.g-unit {
   padding-right: 8px;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--ac-amber);
 }
 
-.apply-switch-btn {
+.metal-apply-btn {
   width: 100%;
-  padding: 12px;
-  margin-top: 4px;
+  padding: 13px;
+  margin-top: 6px;
   background: linear-gradient(135deg, #f55300 0%, #cc4200 100%);
-  border: 1px solid #ff7a29;
+  border: 1.5px solid #ff7a29;
   border-radius: 8px;
   color: #ffffff;
   font-family: var(--font-main);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 900;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 15px var(--ac-orange-glow);
+  box-shadow: 0 4px 16px var(--ac-orange-glow);
 }
 
-.apply-switch-btn:hover {
+.metal-apply-btn:hover {
   opacity: 0.95;
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px var(--ac-orange-glow);
+  box-shadow: 0 6px 22px var(--ac-orange-glow);
 }
 
-.apply-switch-btn:active {
+.metal-apply-btn:active {
   transform: translateY(0);
 }
 
@@ -510,40 +486,41 @@ body {
 .form-feedback.success { color: #22c55e; }
 .form-feedback.error { color: #ef4444; }
 
-/* Bottom Summary Console */
-.console-row {
+/* Bottom Console Bar */
+.switch-bar {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid rgba(247, 235, 225, 0.1);
-  padding-top: 16px;
+  border-top: 1px solid rgba(247, 235, 225, 0.12);
+  padding-top: 18px;
 }
 
-.console-summary {
+.console-readout {
   display: flex;
   gap: 30px;
 }
 
-.summary-pill {
+.readout-pill {
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: rgba(15, 19, 26, 0.8);
+  gap: 12px;
+  background: rgba(12, 16, 22, 0.9);
   border: 1px solid var(--card-border);
-  padding: 6px 16px;
+  padding: 8px 20px;
   border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
 }
 
-.summary-pill .lbl {
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+.readout-pill .rp-lbl {
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
   color: var(--text-muted);
 }
 
-.summary-pill .val {
+.readout-pill .rp-val {
   font-family: var(--font-mono);
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--ac-amber);
 }
@@ -554,40 +531,13 @@ body {
   background: var(--card-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--card-border);
+  border: 1.5px solid var(--card-border);
   border-radius: var(--radius-lg);
-  padding: 24px;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.08);
+  padding: 26px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.75), inset 0 1px 1px rgba(255, 255, 255, 0.08);
   display: flex;
   flex-direction: column;
 }
-
-/* Screw Rivets on Chart Card */
-.screw {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #cbd5e1 0%, #475569 80%, #1e293b 100%);
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.6), 0 2px 4px rgba(0, 0, 0, 0.6);
-  z-index: 5;
-}
-
-.screw::after {
-  content: '';
-  position: absolute;
-  top: 4px;
-  left: 2px;
-  width: 6px;
-  height: 2px;
-  background: #1e293b;
-  transform: rotate(45deg);
-}
-
-.screw.top-left { top: 12px; left: 12px; }
-.screw.top-right { top: 12px; right: 12px; }
-.screw.bottom-left { bottom: 12px; left: 12px; }
-.screw.bottom-right { bottom: 12px; right: 12px; }
 
 .chart-card {
   width: 100%;
@@ -601,7 +551,7 @@ body {
 }
 
 .chart-header h2 {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 800;
   letter-spacing: 0.04em;
 }
