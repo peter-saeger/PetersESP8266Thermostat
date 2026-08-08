@@ -228,7 +228,15 @@ async function fetchStatus() {
 
 function updateUI(data) {
   if (data.temperature !== undefined) {
-    document.getElementById("currentTemp").textContent = parseFloat(data.temperature).toFixed(0);
+    const tempNum = parseFloat(data.temperature);
+    document.getElementById("currentTemp").textContent = tempNum.toFixed(0);
+
+    const p = valToXY(tempNum);
+    const needle = document.getElementById("tempNeedle");
+    if (needle) {
+      needle.setAttribute("x2", p.x);
+      needle.setAttribute("y2", p.y);
+    }
   }
 
   if (data.lowTemp !== undefined) {
@@ -252,21 +260,35 @@ function updateUI(data) {
   if (data.relayStatus !== undefined) {
     const isHeating = data.relayStatus === 1 || data.relayStatus === true;
     const dialInner = document.getElementById("dialInner");
-    const heatStatus = document.getElementById("heatStatus");
+    const statusLamp = document.getElementById("statusLamp");
+    const heatStatusText = document.getElementById("heatStatusText");
 
     if (isHeating) {
       if (dialInner) dialInner.classList.add("heating");
-      heatStatus.classList.add("heating");
-      heatStatus.textContent = "HEATING";
+      if (statusLamp) statusLamp.classList.add("heating");
+      if (heatStatusText) heatStatusText.textContent = "HEATING";
     } else {
       if (dialInner) dialInner.classList.remove("heating");
-      heatStatus.classList.remove("heating");
-      heatStatus.textContent = "STANDBY";
+      if (statusLamp) statusLamp.classList.remove("heating");
+      if (heatStatusText) heatStatusText.textContent = "STANDBY";
     }
   }
 
   if (data.ip) document.getElementById("sysIp").textContent = data.ip;
-  if (data.rssi) document.getElementById("sysRssi").textContent = data.rssi;
+  if (data.rssi !== undefined) {
+    document.getElementById("sysRssi").textContent = data.rssi;
+    const dispRssiVal = document.getElementById("dispRssiVal");
+    if (dispRssiVal) dispRssiVal.textContent = `${data.rssi} dBm`;
+
+    const miniNeedle = document.getElementById("miniNeedle");
+    if (miniNeedle) {
+      const rssiClamped = Math.max(-90, Math.min(-30, parseInt(data.rssi, 10)));
+      const pct = (rssiClamped - (-90)) / 60;
+      const angleRad = (225 + pct * 270) * Math.PI / 180;
+      miniNeedle.setAttribute("x2", 50 + 26 * Math.sin(angleRad));
+      miniNeedle.setAttribute("y2", 50 - 26 * Math.cos(angleRad));
+    }
+  }
   if (data.uptime) {
     const secs = parseInt(data.uptime, 10);
     const hrs = Math.floor(secs / 3600);

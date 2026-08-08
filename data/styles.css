@@ -1,24 +1,23 @@
 :root {
-  --bg-primary: #0f131a;
-  --card-bg: linear-gradient(145deg, rgba(26, 32, 44, 0.9), rgba(15, 19, 26, 0.95));
+  --bg-primary: #0b0e14;
+  --panel-bg: linear-gradient(160deg, #1c2432 0%, #111620 100%);
+  --panel-border: #475569;
+  --card-bg: linear-gradient(145deg, rgba(26, 32, 44, 0.95), rgba(15, 19, 26, 0.98));
   --card-border: rgba(247, 235, 225, 0.12);
+  
   --text-main: #f7ebe1;
   --text-muted: #94a3b8;
   
   --ac-orange: #f55300;
-  --ac-orange-glow: rgba(245, 83, 0, 0.4);
+  --ac-orange-glow: rgba(245, 83, 0, 0.45);
   --ac-amber: #ff9e00;
-  --ac-amber-glow: rgba(255, 158, 0, 0.3);
-
-  --status-heat: #f55300;
-  --status-heat-bg: rgba(245, 83, 0, 0.18);
-  --status-idle: #ff9e00;
-  --status-idle-bg: rgba(255, 158, 0, 0.15);
+  --ac-amber-glow: rgba(255, 158, 0, 0.5);
 
   --radius-lg: 20px;
   --radius-md: 12px;
   --radius-sm: 8px;
-  --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
 }
 
 * {
@@ -30,10 +29,10 @@
 body {
   background-color: var(--bg-primary);
   background-image: 
-    radial-gradient(at 0% 0%, rgba(245, 83, 0, 0.1) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(255, 158, 0, 0.08) 0px, transparent 50%);
+    radial-gradient(at 10% 10%, rgba(245, 83, 0, 0.12) 0px, transparent 50%),
+    radial-gradient(at 90% 90%, rgba(255, 158, 0, 0.08) 0px, transparent 50%);
   color: var(--text-main);
-  font-family: var(--font-family);
+  font-family: var(--font-main);
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -43,10 +42,10 @@ body {
 
 .app-container {
   width: 100%;
-  max-width: 1000px;
+  max-width: 1020px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 22px;
 }
 
 /* Header & Allis-Chalmers Branding */
@@ -54,7 +53,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 4px;
+  padding: 4px 6px;
 }
 
 .brand {
@@ -63,30 +62,31 @@ body {
   gap: 14px;
 }
 
-.brand-badge-ac {
-  background: linear-gradient(135deg, #f55300 0%, #d94100 100%);
+.ac-shield-logo {
+  background: linear-gradient(135deg, #f55300 0%, #cc4200 100%);
   color: #ffffff;
-  font-weight: 800;
-  font-size: 1.15rem;
-  padding: 6px 12px;
+  font-weight: 900;
+  font-size: 1.3rem;
+  padding: 6px 14px;
   border-radius: 6px;
-  letter-spacing: 0.08em;
-  box-shadow: 0 4px 12px rgba(245, 83, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.06em;
+  box-shadow: 0 4px 14px rgba(245, 83, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.5);
   border: 1.5px solid #ff7a29;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
 
-.brand-title-wrap h1 {
-  font-size: 1.35rem;
+.brand-text h1 {
+  font-size: 1.5rem;
   font-weight: 800;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   color: var(--text-main);
   line-height: 1.1;
 }
 
-.brand-subtitle {
+.brand-sub {
   font-size: 0.65rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   color: var(--ac-orange);
   display: block;
 }
@@ -100,7 +100,7 @@ body {
   padding: 6px 14px;
   border-radius: 20px;
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   text-decoration: none;
@@ -137,20 +137,418 @@ body {
   border-color: var(--ac-orange);
 }
 
-/* Dashboard Grid */
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+/* 1950s Tractor Instrument Panel Frame */
+.instrument-panel {
+  position: relative;
+  background: var(--panel-bg);
+  border: 2px solid #475569;
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.8), inset 0 2px 3px rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 
-@media (max-width: 768px) {
-  .dashboard-grid {
+/* Panel Corner Bolts */
+.panel-bolt {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #cbd5e1 0%, #64748b 70%, #1e293b 100%);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8), 0 3px 6px rgba(0, 0, 0, 0.7);
+  z-index: 10;
+}
+
+.panel-bolt::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 3px;
+  width: 8px;
+  height: 2px;
+  background: #1e293b;
+  transform: rotate(45deg);
+}
+
+.bolt-tl { top: 14px; left: 14px; }
+.bolt-tr { top: 14px; right: 14px; }
+.bolt-bl { bottom: 14px; left: 14px; }
+.bolt-br { bottom: 14px; right: 14px; }
+
+/* Panel Grid Layout */
+.panel-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr 240px;
+  gap: 24px;
+  align-items: center;
+}
+
+@media (max-width: 880px) {
+  .panel-grid {
     grid-template-columns: 1fr;
+    gap: 30px;
   }
 }
 
-/* 1950s Metal Panel Card Styling */
+.bay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Left Auxiliary Gauge Bay */
+.mini-gauge-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.mini-gauge-bezel {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(135deg, #cbd5e1 0%, #475569 50%, #1e293b 100%);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6), inset 0 1px 2px rgba(255,255,255,0.4);
+}
+
+.mini-gauge-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.mini-gauge-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.mini-gauge-val {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ac-amber);
+  font-family: var(--font-mono);
+}
+
+/* Vintage Status Lamp */
+.lamp-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-lamp {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  padding: 5px;
+  background: linear-gradient(145deg, #64748b, #1e293b);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.6), inset 0 1px 2px rgba(255,255,255,0.4);
+}
+
+.lamp-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, #78350f 0%, #451a03 100%);
+  border: 1px solid rgba(0,0,0,0.8);
+  transition: all 0.4s ease;
+}
+
+.status-lamp.heating .lamp-inner {
+  background: radial-gradient(circle, #ff6000 0%, #b91c1c 100%);
+  box-shadow: 0 0 20px var(--ac-orange-glow);
+}
+
+.lamp-title {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+.status-lamp.heating + .lamp-title {
+  color: var(--ac-orange);
+}
+
+/* Center Main Gauge Bay */
+.main-gauge-housing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gauge-bezel-ring {
+  border-radius: 50%;
+  padding: 12px;
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 20%, #475569 50%, #1e293b 75%, #94a3b8 100%);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.9), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+}
+
+.gauge-face {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #181e28 0%, #0e1218 100%);
+  box-shadow: inset 0 8px 25px rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dial-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  overflow: visible;
+}
+
+.drag-handle {
+  cursor: grab;
+  transition: r 0.2s ease, filter 0.2s ease;
+}
+
+.drag-handle:hover, .drag-handle:active {
+  r: 15;
+  filter: drop-shadow(0 0 12px rgba(245, 83, 0, 0.9));
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.dial-center-content {
+  position: absolute;
+  top: 45px;
+  left: 45px;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 1;
+}
+
+.ac-brand-text {
+  font-size: 0.65rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  color: var(--ac-orange);
+  margin-bottom: 6px;
+}
+
+.temp-readout-box {
+  background: #090c10;
+  border: 1.5px solid var(--ac-orange);
+  border-radius: 8px;
+  padding: 4px 16px;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 15px rgba(245, 83, 0, 0.25);
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+#currentTemp {
+  font-family: var(--font-mono);
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: var(--ac-amber);
+  line-height: 1;
+  text-shadow: 0 0 14px var(--ac-amber-glow);
+}
+
+.deg-unit {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  color: var(--ac-orange);
+  margin-left: 2px;
+}
+
+.gauge-subtext {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+}
+
+/* Right Temperature Bounds Controls Bay */
+.controls-panel {
+  width: 100%;
+  background: rgba(15, 19, 26, 0.7);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+
+.panel-heading {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--ac-orange);
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.control-box {
+  margin-bottom: 14px;
+}
+
+.control-box label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.vintage-stepper {
+  display: flex;
+  align-items: center;
+  background: #090c10;
+  border: 1px solid rgba(247, 235, 225, 0.2);
+  border-radius: 8px;
+  padding: 3px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+.stepper-btn {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(145deg, #334155 0%, #1e293b 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  color: var(--text-main);
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.stepper-btn:hover {
+  background: linear-gradient(145deg, #475569 0%, #334155 100%);
+  color: var(--ac-orange);
+}
+
+.vintage-stepper input[type="number"] {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--ac-amber);
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  -moz-appearance: textfield;
+}
+
+.vintage-stepper input[type="number"]::-webkit-outer-spin-button,
+.vintage-stepper input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.unit-tag {
+  padding-right: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ac-amber);
+}
+
+.apply-switch-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 4px;
+  background: linear-gradient(135deg, #f55300 0%, #cc4200 100%);
+  border: 1px solid #ff7a29;
+  border-radius: 8px;
+  color: #ffffff;
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 15px var(--ac-orange-glow);
+}
+
+.apply-switch-btn:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px var(--ac-orange-glow);
+}
+
+.apply-switch-btn:active {
+  transform: translateY(0);
+}
+
+.form-feedback {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  text-align: center;
+  min-height: 18px;
+}
+
+.form-feedback.success { color: #22c55e; }
+.form-feedback.error { color: #ef4444; }
+
+/* Bottom Summary Console */
+.console-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid rgba(247, 235, 225, 0.1);
+  padding-top: 16px;
+}
+
+.console-summary {
+  display: flex;
+  gap: 30px;
+}
+
+.summary-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(15, 19, 26, 0.8);
+  border: 1px solid var(--card-border);
+  padding: 6px 16px;
+  border-radius: 20px;
+}
+
+.summary-pill .lbl {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.summary-pill .val {
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ac-amber);
+}
+
+/* History Chart Card */
 .card {
   position: relative;
   background: var(--card-bg);
@@ -158,14 +556,13 @@ body {
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--card-border);
   border-radius: var(--radius-lg);
-  padding: 26px;
+  padding: 24px;
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.08);
-
   display: flex;
   flex-direction: column;
 }
 
-/* Metallic Corner Rivet Screws */
+/* Screw Rivets on Chart Card */
 .screw {
   position: absolute;
   width: 10px;
@@ -192,288 +589,8 @@ body {
 .screw.bottom-left { bottom: 12px; left: 12px; }
 .screw.bottom-right { bottom: 12px; right: 12px; }
 
-.card h2 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  margin-bottom: 4px;
-  color: var(--text-main);
-}
-
-.subtitle {
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  margin-bottom: 20px;
-}
-
-/* Hero Thermostat Card */
-.hero-card {
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* 1950s Tractor Gauge Housing & Bezel */
-.dial-bezel-outer {
-  border-radius: 50%;
-  padding: 8px;
-  background: linear-gradient(135deg, #94a3b8 0%, #334155 40%, #1e293b 70%, #64748b 100%);
-  box-shadow: 0 14px 35px rgba(0,0,0,0.8), inset 0 2px 4px rgba(255,255,255,0.4);
-  margin: 10px 0;
-}
-
-.dial-container {
-  position: relative;
-  width: 230px;
-  height: 230px;
-}
-
-.dial-svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  overflow: visible;
-}
-
-.drag-handle {
-  cursor: grab;
-  transition: r 0.2s ease, filter 0.2s ease;
-}
-
-.drag-handle:hover, .drag-handle:active {
-  r: 14;
-  filter: drop-shadow(0 0 10px rgba(245,83,0,0.8));
-}
-
-.drag-handle:active {
-  cursor: grabbing;
-}
-
-.dial-inner {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle, #1a202c 0%, #11151c 100%);
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  z-index: 1;
-  box-shadow: inset 0 6px 20px rgba(0,0,0,0.8), 0 0 25px rgba(245, 83, 0, 0.2);
-  transition: box-shadow 0.5s ease;
-}
-
-.dial-inner.heating {
-  box-shadow: inset 0 6px 20px rgba(0,0,0,0.8), 0 0 35px var(--ac-orange-glow);
-}
-
-.gauge-brand {
-  font-size: 0.62rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  color: var(--ac-orange);
-  margin-bottom: 2px;
-}
-
-.temp-label {
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: var(--text-muted);
-  margin-bottom: 2px;
-}
-
-.temp-display {
-  font-size: 3.25rem;
-  font-weight: 800;
-  line-height: 1;
-  color: var(--text-main);
-  text-shadow: 0 0 12px var(--ac-amber-glow);
-}
-
-.temp-display .unit {
-  font-size: 1.5rem;
-  font-weight: 400;
-  color: var(--ac-amber);
-  vertical-align: top;
-  margin-left: 2px;
-}
-
-.temp-status {
-  margin-top: 8px;
-  padding: 4px 14px;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  background: var(--status-idle-bg);
-  color: var(--status-idle);
-  border: 1px solid rgba(255, 158, 0, 0.2);
-  transition: all 0.3s ease;
-}
-
-.temp-status.heating {
-  background: var(--status-heat-bg);
-  color: var(--status-heat);
-  border-color: rgba(245, 83, 0, 0.4);
-  box-shadow: 0 0 15px var(--ac-orange-glow);
-}
-
-.hero-footer {
-  width: 100%;
-  border-top: 1px solid var(--card-border);
-  padding-top: 16px;
-}
-
-.bounds-summary {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.bound-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-}
-
-.bound-label {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-}
-
-.bound-val {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--text-main);
-}
-
-.bound-divider {
-  width: 1px;
-  height: 24px;
-  background: var(--card-border);
-}
-
-/* Controls Card & Mechanical Stepper Buttons */
-.control-group {
-  margin-bottom: 20px;
-}
-
-.control-group label {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  margin-bottom: 8px;
-}
-
-.stepper {
-  display: flex;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius-md);
-  padding: 4px;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
-}
-
-.step-btn {
-  width: 42px;
-  height: 42px;
-  background: linear-gradient(145deg, #334155 0%, #1e293b 100%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-sm);
-  color: var(--text-main);
-  font-size: 1.35rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
-}
-
-.step-btn:hover {
-  background: linear-gradient(145deg, #475569 0%, #334155 100%);
-  color: var(--ac-orange);
-}
-
-.stepper input[type="number"] {
-  flex: 1;
-  background: transparent;
-  border: none;
-  color: var(--text-main);
-  font-family: var(--font-family);
-  font-size: 1.3rem;
-  font-weight: 700;
-  text-align: center;
-  -moz-appearance: textfield;
-}
-
-.stepper input[type="number"]::-webkit-outer-spin-button,
-.stepper input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.input-unit {
-  padding-right: 12px;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--ac-amber);
-}
-
-.submit-btn {
-  width: 100%;
-  padding: 14px;
-  background: linear-gradient(135deg, #f55300 0%, #d94100 100%);
-  border: 1px solid #ff7a29;
-  border-radius: var(--radius-md);
-  color: #fff;
-  font-family: var(--font-family);
-  font-size: 1.05rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 15px var(--ac-orange-glow);
-}
-
-.submit-btn:hover {
-  opacity: 0.95;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px var(--ac-orange-glow);
-}
-
-.submit-btn:active {
-  transform: translateY(0);
-}
-
-.form-feedback {
-  margin-top: 10px;
-  font-size: 0.85rem;
-  text-align: center;
-  min-height: 20px;
-}
-
-.form-feedback.success { color: #22c55e; }
-.form-feedback.error { color: #ef4444; }
-
-/* Chart Card */
 .chart-card {
-  grid-column: span 2;
-}
-
-@media (max-width: 768px) {
-  .chart-card {
-    grid-column: span 1;
-  }
+  width: 100%;
 }
 
 .chart-header {
@@ -483,8 +600,14 @@ body {
   margin-bottom: 16px;
 }
 
+.chart-header h2 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
 .icon-btn {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.4);
   border: 1px solid var(--card-border);
   border-radius: var(--radius-sm);
   color: var(--text-muted);
@@ -502,7 +625,7 @@ body {
 .chart-wrapper {
   position: relative;
   width: 100%;
-  height: 260px;
+  height: 250px;
 }
 
 /* Footer */
