@@ -33,7 +33,7 @@
 
       <div class="cluster-grid">
         
-        <!-- Left Panel: Status Lamp & Dual 1950s Vintage Bat-Handle Toggle Switches -->
+        <!-- Left Panel: Status Lamp & 1950s Ivory Bat-Handle Plate Toggle Switches -->
         <div class="cluster-col col-left">
           
           <!-- Vintage Status Indicator Lamp -->
@@ -46,36 +46,40 @@
             </div>
           </div>
 
-          <!-- Dual 1950s Vintage Mechanical Bat-Handle Toggle Switches -->
+          <!-- Dual 1950s Vertical Faceplate Ivory Bat-Handle Toggle Switches -->
           <div class="toggle-card">
             <div class="toggle-card-header">CONSOLE CONTROL</div>
             
-            <!-- Switch 1: POWER (ON / OFF) -->
-            <div class="switch-row">
-              <span class="row-title">POWER</span>
-              <div class="bat-switch-unit">
-                <span class="bat-label label-off" id="labelPowerOff">OFF</span>
-                <label class="bat-switch-collar" for="powerToggle" title="Master Power Switch">
+            <div class="vintage-switches-row">
+              
+              <!-- Switch 1: POWER (ON / OFF) -->
+              <div class="vintage-toggle-unit">
+                <label class="vintage-plate-switch" for="powerToggle" title="Master Power Switch (ON / OFF)">
                   <input type="checkbox" id="powerToggle" checked onchange="onPowerToggleChange(this.checked)">
-                  <div class="hex-nut"></div>
-                  <div class="bat-lever"></div>
+                  <div class="plate-bezel">
+                    <div class="plate-top-label active-on" id="labelPowerOn">ON</div>
+                    <div class="plate-hex-nut"></div>
+                    <div class="plate-bat-lever"></div>
+                    <div class="plate-bot-label" id="labelPowerOff">OFF</div>
+                  </div>
                 </label>
-                <span class="bat-label label-on active" id="labelPowerOn">ON</span>
+                <div class="plate-switch-title">POWER</div>
               </div>
-            </div>
 
-            <!-- Switch 2: MODE (NORMAL / FREEZE PROTECT) -->
-            <div class="switch-row">
-              <span class="row-title">MODE</span>
-              <div class="bat-switch-unit">
-                <span class="bat-label label-norm active" id="labelNormal">NORM</span>
-                <label class="bat-switch-collar" for="freezeToggle" title="Freeze Protection Mode Switch">
+              <!-- Switch 2: MODE (NORMAL / FREEZE PROTECT) -->
+              <div class="vintage-toggle-unit">
+                <label class="vintage-plate-switch" for="freezeToggle" title="Mode Switch (NORM / FREEZE)">
                   <input type="checkbox" id="freezeToggle" onchange="onFreezeToggleChange(this.checked)">
-                  <div class="hex-nut"></div>
-                  <div class="bat-lever"></div>
+                  <div class="plate-bezel">
+                    <div class="plate-top-label" id="labelFreeze">FREEZE</div>
+                    <div class="plate-hex-nut"></div>
+                    <div class="plate-bat-lever"></div>
+                    <div class="plate-bot-label active-norm" id="labelNormal">NORM</div>
+                  </div>
                 </label>
-                <span class="bat-label label-freeze" id="labelFreeze">FREEZE</span>
+                <div class="plate-switch-title">MODE</div>
               </div>
+
             </div>
 
             <div class="mode-status-text" id="modeStatusText">SYSTEM ACTIVE</div>

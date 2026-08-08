@@ -22,11 +22,11 @@ function onPowerToggleChange(checked) {
 
   if (checked) {
     if (labelOff) labelOff.classList.remove("active");
-    if (labelOn) labelOn.classList.add("active");
+    if (labelOn) labelOn.classList.add("active-on");
     if (modeText) modeText.textContent = isFreezeMode ? "FREEZE PROTECT (40-45°F)" : "SYSTEM ACTIVE";
   } else {
     if (labelOff) labelOff.classList.add("active");
-    if (labelOn) labelOn.classList.remove("active");
+    if (labelOn) labelOn.classList.remove("active-on");
     
     if (isFreezeMode) {
       isFreezeMode = false;
@@ -34,7 +34,7 @@ function onPowerToggleChange(checked) {
       if (freezeToggle) freezeToggle.checked = false;
       const labelNorm = document.getElementById("labelNormal");
       const labelFreeze = document.getElementById("labelFreeze");
-      if (labelNorm) labelNorm.classList.add("active");
+      if (labelNorm) labelNorm.classList.add("active-norm");
       if (labelFreeze) labelFreeze.classList.remove("active");
     }
     
@@ -60,7 +60,7 @@ function onFreezeToggleChange(checked) {
       const labelPowerOff = document.getElementById("labelPowerOff");
       const labelPowerOn = document.getElementById("labelPowerOn");
       if (labelPowerOff) labelPowerOff.classList.remove("active");
-      if (labelPowerOn) labelPowerOn.classList.add("active");
+      if (labelPowerOn) labelPowerOn.classList.add("active-on");
     }
 
     // 2. Stash custom normal range & set to 40°F / 45°F
@@ -73,7 +73,7 @@ function onFreezeToggleChange(checked) {
     highInput.value = 45;
 
     if (modeText) modeText.textContent = "FREEZE PROTECT (40-45°F)";
-    if (labelNorm) labelNorm.classList.remove("active");
+    if (labelNorm) labelNorm.classList.remove("active-norm");
     if (labelFreeze) labelFreeze.classList.add("active");
   } else {
     // Return to Normal mode
@@ -82,7 +82,7 @@ function onFreezeToggleChange(checked) {
     highInput.value = savedNormalHigh;
 
     if (modeText) modeText.textContent = isPowerOn ? "SYSTEM ACTIVE" : "HEATER POWER OFF";
-    if (labelNorm) labelNorm.classList.add("active");
+    if (labelNorm) labelNorm.classList.add("active-norm");
     if (labelFreeze) labelFreeze.classList.remove("active");
   }
 
