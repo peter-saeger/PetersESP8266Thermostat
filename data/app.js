@@ -1,6 +1,9 @@
 let ws = null;
 let chart = null;
 let pollTimer = null;
+let isFreezeMode = false;
+let savedNormalLow = 50;
+let savedNormalHigh = 65;
 
 document.addEventListener("DOMContentLoaded", () => {
   initChart();
@@ -9,6 +12,39 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchHistory();
   initDial();
 });
+
+function onFreezeToggleChange(checked) {
+  const lowInput = document.getElementById("lowTempInput");
+  const highInput = document.getElementById("highTempInput");
+  const modeText = document.getElementById("modeStatusText");
+  const labelOn = document.getElementById("labelOn");
+  const labelFreeze = document.getElementById("labelFreeze");
+
+  if (checked) {
+    if (!isFreezeMode) {
+      savedNormalLow = parseFloat(lowInput.value) || 50;
+      savedNormalHigh = parseFloat(highInput.value) || 65;
+    }
+    isFreezeMode = true;
+    lowInput.value = 40;
+    highInput.value = 45;
+
+    if (modeText) modeText.textContent = "FREEZE PROTECT ACTIVE (40-45°F)";
+    if (labelOn) labelOn.classList.remove("active");
+    if (labelFreeze) labelFreeze.classList.add("active");
+  } else {
+    isFreezeMode = false;
+    lowInput.value = savedNormalLow;
+    highInput.value = savedNormalHigh;
+
+    if (modeText) modeText.textContent = "NORMAL OPERATION";
+    if (labelOn) labelOn.classList.add("active");
+    if (labelFreeze) labelFreeze.classList.remove("active");
+  }
+
+  updateHandles();
+  saveBounds();
+}
 
 // Circular Dial Math & Drag Logic
 function valToXY(val) {

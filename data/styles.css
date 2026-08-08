@@ -154,7 +154,7 @@ body {
 /* Cluster Grid Layout */
 .cluster-grid {
   display: grid;
-  grid-template-columns: 200px 1fr 240px;
+  grid-template-columns: 210px 1fr 240px;
   gap: 24px;
   align-items: center;
 }
@@ -173,66 +173,29 @@ body {
   justify-content: center;
 }
 
-/* Left Auxiliary Panel */
-.aux-gauge-card {
+/* Left Panel Status Lamp & 1950s Toggle Switch */
+.indicator-lamp-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 24px;
 }
 
-.mini-bezel {
-  position: relative;
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  padding: 5px;
-  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 25%, #334155 60%, #94a3b8 100%);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.7), inset 0 1px 3px rgba(255,255,255,0.6);
-}
-
-.mini-gauge-svg {
-  width: 100%;
-  height: 100%;
-}
-
-.aux-label {
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  color: var(--text-muted);
-  margin-top: 8px;
-}
-
-.aux-val {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--ac-amber);
-  font-family: var(--font-mono);
-}
-
-/* Vintage Illuminated Status Lamp */
-.indicator-lamp-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .lamp-bezel {
-  width: 100px;
-  height: 60px;
-  border-radius: 10px;
-  padding: 4px;
+  width: 130px;
+  height: 70px;
+  border-radius: 12px;
+  padding: 5px;
   background: linear-gradient(135deg, #cbd5e1 0%, #334155 50%, #1e293b 100%);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.7), inset 0 1px 2px rgba(255,255,255,0.4);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.7), inset 0 1px 3px rgba(255,255,255,0.4);
 }
 
 .lamp-lens {
   width: 100%;
   height: 100%;
-  border-radius: 7px;
+  border-radius: 8px;
   background: radial-gradient(circle, #451a03 0%, #1a0800 100%);
-  border: 1px solid rgba(0,0,0,0.8);
+  border: 1.5px solid rgba(0,0,0,0.8);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -246,7 +209,7 @@ body {
 }
 
 .lamp-text-top {
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   font-weight: 900;
   letter-spacing: 0.16em;
   color: rgba(255, 255, 255, 0.4);
@@ -257,7 +220,7 @@ body {
 }
 
 .lamp-text-bot {
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-weight: 900;
   letter-spacing: 0.12em;
   color: var(--ac-amber);
@@ -265,7 +228,92 @@ body {
 
 .lamp-bezel.heating .lamp-text-bot {
   color: #ffffff;
-  text-shadow: 0 0 8px #ffffff;
+  text-shadow: 0 0 10px #ffffff;
+}
+
+/* Vintage Toggle Card & Switch */
+.toggle-card {
+  width: 100%;
+  background: rgba(12, 16, 22, 0.85);
+  border: 1.5px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+}
+
+.toggle-card-header {
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.vintage-switch-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.switch-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-align: center;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.switch-label.active {
+  color: var(--ac-orange);
+  text-shadow: 0 0 10px var(--ac-orange-glow);
+}
+
+.toggle-switch-collar {
+  position: relative;
+  width: 60px;
+  height: 32px;
+  background: linear-gradient(135deg, #334155 0%, #0f172a 100%);
+  border: 2px solid #64748b;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.9), 0 4px 10px rgba(0,0,0,0.6);
+  display: block;
+}
+
+.toggle-switch-collar input {
+  display: none;
+}
+
+.toggle-lever {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(145deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.8), inset 0 1px 1px #ffffff;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease;
+}
+
+.toggle-switch-collar input:checked + .toggle-lever {
+  transform: translateX(28px);
+  background: linear-gradient(145deg, #ffffff 0%, #f55300 100%);
+  box-shadow: 0 0 12px var(--ac-orange-glow);
+}
+
+.mode-status-text {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--ac-amber);
+  text-align: center;
 }
 
 /* Center Main Gauge Cluster */

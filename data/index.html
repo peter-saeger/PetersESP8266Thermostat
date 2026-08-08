@@ -13,7 +13,7 @@
 <body>
   <div class="app-container">
 
-    <!-- Header: Just Lon's Shop Heat -->
+    <!-- Header: Lon's Shop Heat -->
     <header class="header">
       <div class="brand">
         <h1>Lon's Shop Heat</h1>
@@ -23,7 +23,7 @@
       </div>
     </header>
 
-    <!-- Main 1950s Instrument Cluster Chassis -->
+    <!-- 1950s WD45/D-Series Tractor Instrument Cluster Chassis -->
     <main class="chassis-panel">
       <!-- Casing Bolts -->
       <div class="bolt bolt-tl"></div>
@@ -33,43 +33,38 @@
 
       <div class="cluster-grid">
         
-        <!-- Left Auxiliary Panel -->
+        <!-- Left Panel: Status Lamp & 1950s Freeze Protect Toggle -->
         <div class="cluster-col col-left">
           
-          <!-- Mini Signal Gauge -->
-          <div class="aux-gauge-card">
-            <div class="mini-bezel">
-              <svg class="mini-gauge-svg" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="46" fill="#111622" stroke="url(#miniChrome)" stroke-width="5"/>
-                <defs>
-                  <linearGradient id="miniChrome" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#ffffff"/>
-                    <stop offset="50%" stop-color="#475569"/>
-                    <stop offset="100%" stop-color="#cbd5e1"/>
-                  </linearGradient>
-                </defs>
-                <path d="M 22 78 A 38 38 0 1 1 78 78" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="3" stroke-dasharray="3,3"/>
-                <line id="miniNeedle" x1="50" y1="50" x2="30" y2="30" stroke="#f55300" stroke-width="2.5" stroke-linecap="round"/>
-                <circle cx="50" cy="50" r="5" fill="#e2e8f0"/>
-              </svg>
-            </div>
-            <div class="aux-label">WIFI SIGNAL</div>
-            <div class="aux-val" id="dispRssiVal">-- dBm</div>
-          </div>
-
-          <!-- Vintage Push Indicator Lamp -->
+          <!-- Vintage Status Indicator Lamp -->
           <div class="indicator-lamp-card">
             <div class="lamp-bezel" id="lampBezel">
               <div class="lamp-lens">
-                <span class="lamp-text-top">HEAT</span>
+                <span class="lamp-text-top">HEATER</span>
                 <span class="lamp-text-bot" id="heatStatusText">STANDBY</span>
               </div>
             </div>
           </div>
 
+          <!-- 1950s Toggle Switch Box: ON / FREEZE PROTECT -->
+          <div class="toggle-card">
+            <div class="toggle-card-header">MODE SELECT</div>
+            
+            <div class="vintage-switch-container">
+              <span class="switch-label label-on" id="labelOn">ON</span>
+              <label class="toggle-switch-collar" for="freezeToggle">
+                <input type="checkbox" id="freezeToggle" onchange="onFreezeToggleChange(this.checked)">
+                <span class="toggle-lever"></span>
+              </label>
+              <span class="switch-label label-freeze" id="labelFreeze">FREEZE<br>PROTECT</span>
+            </div>
+
+            <div class="mode-status-text" id="modeStatusText">NORMAL OPERATION</div>
+          </div>
+
         </div>
 
-        <!-- Center Main Gauge Cluster -->
+        <!-- Center Main WD45 Instrument Gauge Cluster -->
         <div class="cluster-col col-center">
           <div class="main-gauge-bezel">
             <div class="gauge-dial-face">
@@ -89,7 +84,7 @@
                   </filter>
                 </defs>
 
-                <!-- Outer Metal Ring -->
+                <!-- Outer Heavy Chrome Bezel Ring -->
                 <circle cx="100" cy="100" r="97" fill="none" stroke="url(#chromeBezelGrad)" stroke-width="6"/>
 
                 <!-- Analog Gauge Scale Tick Marks -->
@@ -129,7 +124,7 @@
                 <circle id="highHandle" class="drag-handle" cx="163.64" cy="163.64" r="12" fill="#181e29" stroke="#ff9e00" stroke-width="3.5"/>
               </svg>
 
-              <!-- Center Digital Readout Box & Subtitle -->
+              <!-- Center Digital Readout Box -->
               <div class="dial-center-box">
                 <div class="digital-nixie-window">
                   <span id="currentTemp">--</span><span class="nixie-unit">&deg;F</span>
@@ -177,7 +172,7 @@
 
       </div>
 
-      <!-- Bottom Console Switch Bar -->
+      <!-- Bottom Console Summary Row -->
       <div class="switch-bar">
         <div class="console-readout">
           <div class="readout-pill">
@@ -214,7 +209,7 @@
       </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer: IP, WiFi Signal, Uptime & OTA -->
     <footer class="footer">
       <div class="sys-info">
         <span>IP: <strong id="sysIp">--</strong></span>
