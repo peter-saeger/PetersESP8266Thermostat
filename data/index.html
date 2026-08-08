@@ -52,7 +52,7 @@
             
             <div class="vintage-switches-row">
               
-              <!-- Switch 1: POWER (ON / OFF) -->
+              <!-- Switch 1: POWER (ON [UP] / OFF [DOWN]) -->
               <div class="vintage-toggle-unit">
                 <label class="vintage-plate-switch" for="powerToggle" title="Master Power Switch (ON / OFF)">
                   <input type="checkbox" id="powerToggle" checked onchange="onPowerToggleChange(this.checked)">
@@ -66,15 +66,15 @@
                 <div class="plate-switch-title">POWER</div>
               </div>
 
-              <!-- Switch 2: MODE (NORMAL / FREEZE PROTECT) -->
+              <!-- Switch 2: MODE (NORMAL [UP] / FREEZE PROTECT [DOWN]) -->
               <div class="vintage-toggle-unit">
-                <label class="vintage-plate-switch" for="freezeToggle" title="Mode Switch (NORM / FREEZE)">
+                <label class="vintage-plate-switch" for="freezeToggle" title="Mode Switch (NORMAL / FREEZE PROTECT)">
                   <input type="checkbox" id="freezeToggle" onchange="onFreezeToggleChange(this.checked)">
-                  <div class="plate-bezel">
-                    <div class="plate-top-label" id="labelFreeze">FREEZE</div>
+                  <div class="plate-bezel plate-bezel-mode">
+                    <div class="plate-top-label active-norm" id="labelNormal">NORMAL</div>
                     <div class="plate-hex-nut"></div>
                     <div class="plate-bat-lever"></div>
-                    <div class="plate-bot-label active-norm" id="labelNormal">NORM</div>
+                    <div class="plate-bot-label label-freeze-pill" id="labelFreeze">FREEZE<br>PROTECT</div>
                   </div>
                 </label>
                 <div class="plate-switch-title">MODE</div>

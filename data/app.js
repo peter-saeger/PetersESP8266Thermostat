@@ -74,7 +74,7 @@ function onFreezeToggleChange(checked) {
 
     if (modeText) modeText.textContent = "FREEZE PROTECT (40-45°F)";
     if (labelNorm) labelNorm.classList.remove("active-norm");
-    if (labelFreeze) labelFreeze.classList.add("active");
+    if (labelFreeze) labelFreeze.classList.add("active-freeze");
   } else {
     // Return to Normal mode
     isFreezeMode = false;
@@ -83,7 +83,7 @@ function onFreezeToggleChange(checked) {
 
     if (modeText) modeText.textContent = isPowerOn ? "SYSTEM ACTIVE" : "HEATER POWER OFF";
     if (labelNorm) labelNorm.classList.add("active-norm");
-    if (labelFreeze) labelFreeze.classList.remove("active");
+    if (labelFreeze) labelFreeze.classList.remove("active-freeze");
   }
 
   updateHandles();

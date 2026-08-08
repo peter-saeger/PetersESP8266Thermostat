@@ -350,7 +350,24 @@ body {
   box-shadow: 0 0 10px var(--ac-orange-glow);
 }
 
-.plate-bot-label.active-norm, .plate-bot-label.active {
+/* Faceplate Sizing & Label Pills */
+.plate-bezel-mode {
+  width: 64px;
+}
+
+.plate-bezel-mode .plate-top-label,
+.plate-bezel-mode .plate-bot-label {
+  width: 54px;
+}
+
+.label-freeze-pill {
+  font-size: 0.52rem;
+  line-height: 1.1;
+  height: 22px;
+  text-align: center;
+}
+
+.plate-top-label.active-norm {
   background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
   color: #ffffff;
   border-color: #38bdf8;
@@ -358,50 +375,28 @@ body {
   box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
 }
 
-/* 3D Chrome Hex Nut Rim in Center of Faceplate */
-.plate-hex-nut {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #ffffff 0%, #94a3b8 40%, #334155 80%, #0f172a 100%);
-  border: 1.5px solid #64748b;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.8), inset 0 1px 2px rgba(255,255,255,0.8);
-  position: absolute;
-  top: 39px;
-  z-index: 1;
+.plate-bot-label.active-freeze {
+  background: linear-gradient(180deg, #f55300 0%, #c2410c 100%);
+  color: #ffffff;
+  border-color: #ff7a29;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 10px var(--ac-orange-glow);
 }
 
-/* Ivory/Cream 3D Solid Bat-Handle Lever Arm */
-.plate-bat-lever {
-  position: absolute;
-  top: 33px;
-  width: 8px;
-  height: 30px;
-  background: linear-gradient(180deg, #fffbeb 0%, #fef3c7 40%, #d97706 80%, #78350f 100%);
-  border-radius: 4px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.9);
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-  z-index: 3;
-  transform: translateY(8px); /* Default DOWN position */
+/* Lever Positions: Power Switch (ON UP / OFF DOWN) */
+.vintage-plate-switch input#powerToggle + .plate-bezel .plate-bat-lever {
+  transform: translateY(8px); /* OFF = DOWN */
+}
+.vintage-plate-switch input#powerToggle:checked + .plate-bezel .plate-bat-lever {
+  transform: translateY(-8px); /* ON = UP */
 }
 
-/* Ivory Spherical Ball Tip on End of Bat Lever */
-.plate-bat-lever::after {
-  content: '';
-  position: absolute;
-  top: -4px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #ffffff 0%, #fef3c7 40%, #f59e0b 80%, #78350f 100%);
-  box-shadow: inset 0 1px 2px #ffffff, 0 2px 5px rgba(0,0,0,0.7);
+/* Lever Positions: Mode Switch (NORMAL UP / FREEZE PROTECT DOWN) */
+.vintage-plate-switch input#freezeToggle + .plate-bezel .plate-bat-lever {
+  transform: translateY(-8px); /* NORMAL = UP */
 }
-
-/* When Toggled ON / FREEZE (Checked) -> Lever Flips UP! */
-.vintage-plate-switch input:checked + .plate-bezel .plate-bat-lever {
-  transform: translateY(-8px);
+.vintage-plate-switch input#freezeToggle:checked + .plate-bezel .plate-bat-lever {
+  transform: translateY(8px); /* FREEZE PROTECT = DOWN */
 }
 
 .mode-status-text {
