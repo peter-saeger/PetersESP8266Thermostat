@@ -64,12 +64,12 @@
 
         </div>
 
-        <!-- Center Main 1950s Instrument Gauge Cluster -->
+        <!-- Center Main 1950s Instrument Gauge Cluster (30% Bigger: 350px x 350px) -->
         <div class="cluster-col col-center">
           <div class="main-gauge-bezel">
             <div class="gauge-dial-face">
               
-              <svg class="dial-svg" viewBox="0 0 200 200" id="dialSvg">
+              <svg class="dial-svg" viewBox="0 0 240 240" id="dialSvg">
                 <defs>
                   <linearGradient id="chromeBezelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stop-color="#ffffff"/>
@@ -79,47 +79,47 @@
                     <stop offset="100%" stop-color="#f8fafc"/>
                   </linearGradient>
                   <filter id="glowOrange" x="-20%" y="-20%" width="140%" height="140%">
-                    <feGaussianBlur stdDeviation="2" result="blur" />
+                    <feGaussianBlur stdDeviation="2.5" result="blur" />
                     <feComposite in="SourceGraphic" in2="blur" operator="over" />
                   </filter>
                 </defs>
 
-                <!-- Outer Thin Chrome Bezel Ring -->
-                <circle cx="100" cy="100" r="97" fill="none" stroke="url(#chromeBezelGrad)" stroke-width="2.5"/>
+                <!-- Thin Chrome Bezel Outer Ring (r=117) -->
+                <circle cx="120" cy="120" r="117" fill="none" stroke="url(#chromeBezelGrad)" stroke-width="3"/>
 
-                <!-- Outer Scale Tick Marks (r = 88 to 95) -->
-                <g class="gauge-scale-ticks" stroke="#f7ebe1" opacity="0.5">
-                  <line x1="37.8" y1="162.2" x2="32.8" y2="167.2" stroke-width="1.8" />
-                  <line x1="12" y1="100" x2="5" y2="100" stroke-width="1.8" />
-                  <line x1="37.8" y1="37.8" x2="32.8" y2="32.8" stroke-width="1.8" />
-                  <line x1="100" y1="12" x2="100" y2="5" stroke-width="1.8" />
-                  <line x1="162.2" y1="37.8" x2="167.2" y2="32.8" stroke-width="1.8" />
-                  <line x1="188" y1="100" x2="195" y2="100" stroke-width="1.8" />
-                  <line x1="162.2" y1="162.2" x2="167.2" y2="167.2" stroke-width="1.8" />
+                <!-- Scale Tick Marks (r = 104 to 112) -->
+                <g class="gauge-scale-ticks" stroke="#f7ebe1" opacity="0.55">
+                  <line x1="46.5" y1="193.5" x2="40.8" y2="199.2" stroke-width="2" />
+                  <line x1="16" y1="120" x2="8" y2="120" stroke-width="2" />
+                  <line x1="46.5" y1="46.5" x2="40.8" y2="40.8" stroke-width="2" />
+                  <line x1="120" y1="16" x2="120" y2="8" stroke-width="2" />
+                  <line x1="193.5" y1="46.5" x2="199.2" y2="40.8" stroke-width="2" />
+                  <line x1="224" y1="120" x2="232" y2="120" stroke-width="2" />
+                  <line x1="193.5" y1="193.5" x2="199.2" y2="199.2" stroke-width="2" />
                 </g>
 
-                <!-- Scale Degree Numbers Outward near Ticks (r = 80, font-size = 12.5px) -->
-                <g class="scale-degree-text" fill="#f7ebe1" font-size="12.5" font-weight="900" text-anchor="middle">
-                  <text x="42" y="162">40°</text>
-                  <text x="22" y="104">50°</text>
-                  <text x="44" y="42">60°</text>
-                  <text x="100" y="24">65°</text>
-                  <text x="156" y="42">70°</text>
-                  <text x="178" y="104">80°</text>
-                  <text x="158" y="162">90°</text>
+                <!-- Scale Degree Numbers with Generous Padding from Chrome Border (r = 90) -->
+                <g class="scale-degree-text" fill="#f7ebe1" font-size="14.5" font-weight="900" text-anchor="middle">
+                  <text x="56" y="188">40°</text>
+                  <text x="30" y="124">50°</text>
+                  <text x="56" y="52">60°</text>
+                  <text x="120" y="30">65°</text>
+                  <text x="184" y="52">70°</text>
+                  <text x="210" y="124">80°</text>
+                  <text x="184" y="188">90°</text>
                 </g>
 
-                <!-- Active Range Arc Track Inward (Radius = 58, stroke-width = 4.5) -->
-                <path d="M 58.99 141.01 A 58 58 0 1 1 141.01 141.01" fill="none" stroke="rgba(247,235,225,0.12)" stroke-width="4.5" stroke-linecap="round"/>
-                <path id="activeTrack" d="M 58.99 141.01 A 58 58 0 0 1 141.01 141.01" fill="none" stroke="#f55300" stroke-width="4.5" stroke-linecap="round" filter="url(#glowOrange)"/>
+                <!-- Active Range Arc Track Inward (Radius = 66, stroke-width = 5) -->
+                <path d="M 73.33 166.67 A 66 66 0 1 1 166.67 166.67" fill="none" stroke="rgba(247,235,225,0.12)" stroke-width="5" stroke-linecap="round"/>
+                <path id="activeTrack" d="M 73.33 166.67 A 66 66 0 0 1 166.67 166.67" fill="none" stroke="#f55300" stroke-width="5" stroke-linecap="round" filter="url(#glowOrange)"/>
 
                 <!-- Pointer Needle -->
-                <line id="tempNeedle" x1="100" y1="100" x2="100" y2="34" stroke="#ff9e00" stroke-width="2.5" stroke-linecap="round" filter="url(#glowOrange)"/>
-                <circle cx="100" cy="100" r="5.5" fill="#1e293b" stroke="#ff9e00" stroke-width="2"/>
+                <line id="tempNeedle" x1="120" y1="120" x2="120" y2="40" stroke="#ff9e00" stroke-width="3" stroke-linecap="round" filter="url(#glowOrange)"/>
+                <circle cx="120" cy="120" r="6.5" fill="#1e293b" stroke="#ff9e00" stroke-width="2"/>
 
-                <!-- Interactive Range Drag Handles (Radius = 58) -->
-                <circle id="lowHandle" class="drag-handle" cx="58.99" cy="141.01" r="7.5" fill="#181e29" stroke="#f55300" stroke-width="2.5"/>
-                <circle id="highHandle" class="drag-handle" cx="141.01" cy="141.01" r="7.5" fill="#181e29" stroke="#ff9e00" stroke-width="2.5"/>
+                <!-- Interactive Range Drag Handles (Radius = 66) -->
+                <circle id="lowHandle" class="drag-handle" cx="73.33" cy="166.67" r="8.5" fill="#181e29" stroke="#f55300" stroke-width="2.5"/>
+                <circle id="highHandle" class="drag-handle" cx="166.67" cy="166.67" r="8.5" fill="#181e29" stroke="#ff9e00" stroke-width="2.5"/>
               </svg>
 
               <!-- Center Digital Readout Box -->

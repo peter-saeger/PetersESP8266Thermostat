@@ -47,21 +47,21 @@ function onFreezeToggleChange(checked) {
 }
 
 // Circular Dial Math & Drag Logic
-function valToXY(val, radius = 58) {
+function valToXY(val, radius = 66) {
   const min = 40, max = 90;
   const clamped = Math.max(min, Math.min(max, val));
   const percent = (clamped - min) / (max - min);
   const angleDeg = 225 + (percent * 270);
   const angleRad = angleDeg * Math.PI / 180;
   return {
-    x: 100 + radius * Math.sin(angleRad),
-    y: 100 - radius * Math.cos(angleRad)
+    x: 120 + radius * Math.sin(angleRad),
+    y: 120 - radius * Math.cos(angleRad)
   };
 }
 
 function xyToVal(x, y) {
-  const dx = x - 100;
-  const dy = 100 - y;
+  const dx = x - 120;
+  const dy = 120 - y;
   let angleDeg = Math.atan2(dx, dy) * 180 / Math.PI;
   if (angleDeg < 0) angleDeg += 360;
   
@@ -76,7 +76,7 @@ function xyToVal(x, y) {
 }
 
 function updateActiveTrack(low, high) {
-  const radius = 58;
+  const radius = 66;
   const p1 = valToXY(low, radius);
   const p2 = valToXY(high, radius);
   const diff = high - low;
